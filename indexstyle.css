@@ -3,11 +3,11 @@
 *{
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    border: 1px solid;
 }
 
 .logoblob{
   position: absolute;
-
-  shadow: 0px 10px 10px #9F6FB4;
+  width: 30vw;
+  height: auto;
+  rotate: 170deg;
 }
