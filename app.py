@@ -1,5 +1,5 @@
 from flask import *
-from flask import Flask, render_template
+from flask import Flask, render_template, g
 import cv2
 import numpy as np
 import os
@@ -70,7 +70,18 @@ def extract_keypoints(results):
     return np.concatenate([lh, rh, pose, face])
 
 
-predictedword = []
+
+
+#normal
+
+model = Sequential()
+model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(15,126)))
+model.add(LSTM(128, return_sequences=True, activation='relu'))
+model.add(LSTM(64, return_sequences=False, activation='relu'))
+model.add(BatchNormalization())
+model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(21, activation='softmax'))
 
 
 
@@ -82,13 +93,14 @@ def generate():
     sequence_length = 30
     threshold = 0.5
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     with mp_holistic.Holistic(min_detection_confidence=0.1, min_tracking_confidence=0.1) as holistic:
         while True:
             ret, frame = cap.read()
             if not ret:
                 break
             else:
+                print('yy')
                 image, results = mediapipe_detection(frame, holistic)
                 # Make detections
                 image, results = mediapipe_detection(frame, holistic)
@@ -101,7 +113,7 @@ def generate():
                 sequence.append(keypoints)
                 sequence = sequence[-sequence_length:]
                 
-                
+                app.config['Prediction_Word'] = 'hello'
                 
                 # Convert the frame to JPEG format
                 ret, buffer = cv2.imencode('.jpg', frame)
@@ -128,8 +140,14 @@ def video_feed():
 
 @app.route('/get_data')
 def get_data():
-    data = {'name': 'John', 'age': 30}
-    return jsonify(data)
+    data = g.predictedword 
+    return data
+
+@app.route('/button-clicked')
+def handle_button_click():
+    button_info = request.args.get('info')
+    # Do something with the button_info
+    return "Received button click: " + button_info
 
 
 if __name__ == '__main__':

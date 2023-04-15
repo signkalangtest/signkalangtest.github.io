@@ -8,14 +8,24 @@ body {
 #menu {
   position: fixed;
   top: 0;
-  right: -400px; /* set initial position offscreen */
-  width: 400px;
+  right: -420px; /* set initial position offscreen */
+  width: 420px;
   height: 100%;
   background-color: #452887;
   color: #fff;
-  padding-top: 5%;
+  padding-top: 6%;
   box-sizing: border-box;
   transition: all 0.3s ease-in-out; /* add animation */
+  border-radius: 50px 0px 0px 50px;
+}
+
+#menu .closemenu{
+  position: absolute;
+  top:2%;
+  right: 6%;
+  font-size: 3rem;
+  cursor: pointer;
+  color:bisque;
 }
 
 #menu ul {
@@ -134,7 +144,7 @@ img#btn-menu {
   color:bisque;
 }
 
-.video-container2 .close{
+.video-container2 .close2{
   position: absolute;
   top:9%;
   right: 10%;
@@ -162,7 +172,7 @@ img#btn-menu {
 .video-container.show{
   pointer-events: all;
   opacity:1;
-  background-color:#452887;
+  background-color:black;
 }
 
 .video-container2.show{

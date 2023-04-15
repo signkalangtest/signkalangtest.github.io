@@ -10,42 +10,43 @@
 
 </head>
 <body>
+
+
     <div class="home">
         <div class="navbar">
-            <div class="bg-image">
-                <img id="btn-logo" src = "./assets/logoll.png">
-                <img id="btn-menu" src = "./assets/burgerbb.png">
-                
-
-                <div class="video-container">
-                    <span class = "close"> &#10006;</span>
-                    <video src = "./assets/prayer.mp4" controls class = "video"></video>
-                </div>
-
-                <div class="video-container2">
-                    <span class = "close2"> &#10006;</span>
-                    <video src = "./assets/nationalanthem.mp4" controls class = "video2"></video>
-                </div>
-
-                <div id="menu">
-                    <span class = "closemenu"> &#10006;</span>
-
-                    <ul>
-                        <a href = "#" class = "vidbtn"><li>PRAYER</li></a>
-                        <a href = "#" class = "vidbtn2"><li>NATIONAL ANTHEM</li></a>
-
-                        <li>HOW ARE YOU FEELING TODAY?</li>
-                    </ul>
-                    <div class = "econtainer">
-                        <div class = "emote-container">
-                            <img class= "emote" src = "./assets/imhappy.png">
-                            <img class= "emote" src = "./assets/imangry.png">
-                            <img class= "emote" src = "./assets/imsad.png">
-                            <img class= "emote" src = "./assets/imscared.png">
-                        </div> 
-                    </div>
-                </div> 
+            <div class="bg-image"></div>
+            <img id="btn-menu" src = "./assets/burgerbb.png">
+            <img id="btn-logo" src = "./assets/logoll.png">
+        
+            <div class="video-container">
+                <span class = "close"> &#10006;</span>
+                <video src = "./assets/prayer.mp4" controls class = "video"></video>
             </div>
+        
+            <div class="video-container2">
+                <span class = "close2"> &#10006;</span>
+                <video src = "./assets/nationalanthem.mp4" controls class = "video2"></video>
+            </div>
+        
+            <div id="menu">
+                <span class = "closemenu"> &#10006;</span>
+        
+                <ul>
+                    <a href = "#" class = "vidbtn"><li>PRAYER</li></a>
+                    <a href = "#" class = "vidbtn2"><li>NATIONAL ANTHEM</li></a>
+        
+                    <li>HOW ARE YOU FEELING TODAY?</li>
+                </ul>
+                <div class = "econtainer">
+                    <div class = "emote-container">
+                        <img class= "emote" src = "./assets/imhappy.png">
+                        <img class= "emote" src = "./assets/imangry.png">
+                        <img class= "emote" src = "./assets/imsad.png">
+                        <img class= "emote" src = "./assets/imscared.png">
+                    </div> 
+                </div>
+            </div> 
+        
         </div>
 
         <div class="content">
@@ -64,11 +65,9 @@
             
                 <div class="bulletinboarddiv">
                     <div class="boardcontent">
-                        <b>TODAY IS</b>
-
+                        TODAY IS
                         <div class="datediv" id="datediv"></div>
-                        <b>THE WEATHER IS</b>
-                        
+                        THE WEATHER IS:
                         <div class = "container">
                             <div class = "button-container">
                                 <img class= "weather" src = "./assets/sunny.png">
@@ -82,7 +81,7 @@
             </div>
         </div>
     </div>
-    
+
 
 
     
@@ -101,28 +100,21 @@
         datediv.innerHTML = month + "/" + day + "/" + year;
     });
 
-        const images = document.querySelectorAll('.weather');
+    const images = document.querySelectorAll('.weather');
 
         images.forEach((image) => {
         image.addEventListener('click', () => {
-            // hide all other images
+
             images.forEach((img) => {
             if (img !== image) {
                 img.style.display = 'none';
             }
+
             });
-
-            if (image.classList.contains('active')) {
-                image.classList.remove('active');
-                images.forEach((img) => {
-                    img.style.display = '';
-                });
-            } else {
-                image.classList.add('active');
-            }
-        });
+            image.classList.add('active');
         });
 
+        });
 
         var btnMenu = document.getElementById('btn-menu');
 		var menu = document.getElementById('menu');

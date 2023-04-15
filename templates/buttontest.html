@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <!-- HTML code with buttons -->
+        <button id="button1">Button 1</button>
+        <button id="button2">Button 2</button>
+        <button id="button3">Button 3</button>
+
+        <script>
+            // JavaScript code to handle button clicks
+            document.getElementById("button1").addEventListener("click", function() {
+            sendRequest("Button 1 clicked");
+            });
+
+            document.getElementById("button2").addEventListener("click", function() {
+            sendRequest("Button 2 clicked");
+            });
+
+            document.getElementById("button3").addEventListener("click", function() {
+            sendRequest("Button 3 clicked");
+            });
+
+            // Function to send HTTP request to Flask server
+            function sendRequest(buttonInfo) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                console.log("Response from Flask server: " + this.responseText);
+                }
+            };
+            xhttp.open("GET", "/button-clicked?info=" + buttonInfo, true);
+            xhttp.send();
+            }
+        </script>
+
+    </body>
+</html>

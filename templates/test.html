@@ -18,16 +18,14 @@
     <h1 id="data-display"></h1>
     
 <script async defer>
-    
-    fetch('/get_data')
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('data-display').innerHTML = `Name: ${data.name}, Age: ${data.age}`;
-    });
 
-    
+        fetch('/get_data')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('data-display').innerHTML = data;
+        });
+
 </script>
 
 </body>
-
 </html> 
