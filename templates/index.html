@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="{{ url_for('static', filename='indexstyle.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/indexstyle.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 </head>
@@ -19,13 +19,13 @@
 <div class="maincontainer">
     <div class="sandtdiv">
         <a href="#">
-            <img src="./assets/sandt.png">
+            <img src="{{ url_for('static', filename='images/sandt.png') }}">
         </a>    
     </div>
 
     <div class="tasdiv">
         <a href="#">
-            <img src="./assets/tas.png" >
+            <img src="{{ url_for('static', filename='images/tas.png') }}" >
         </a>  
     </div>
 
@@ -36,10 +36,10 @@
             THE WEATHER IS:
             <div class = "container">
                 <div class = "button-container">
-                    <img class= "weather" src = "./assets/sunny.png">
-                    <img class= "weather" src = "./assets/cloudy.png">
-                    <img class= "weather" src = "./assets/rainy.png">
-                    <img class= "weather" src = "./assets/windy.png">
+                    <img class= "weather" src = "{{ url_for('static', filename='images/sunny.png') }}">
+                    <img class= "weather" src = "{{ url_for('static', filename='images/cloudy.png') }}">
+                    <img class= "weather" src = "{{ url_for('static', filename='images/rainy.png') }}">
+                    <img class= "weather" src = ".{{ url_for('static', filename='images/windy.png') }}">
                 </div> 
             </div>
         </div>

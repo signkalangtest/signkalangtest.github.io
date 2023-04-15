@@ -12,15 +12,33 @@
 
 <body>
 
-    <img id="btn-menu" src = "./assets/burgerbb.png">     
+    <img id="btn-menu" src = "./assets/burgerbb.png">
+    
+    <div class="video-container">
+        <span class = "close"> &#10006;</span>
+        <video src = "./assets/testvid.mp4" controls class = "video"></video>
+    </div>
+
+    <div class="video-container2">
+        <span class = "close"> &#10006;</span>
+        <video src = "./assets/prayer.mp4" controls class = "video2"></video>
+    </div>
 
 	<div id="menu">
-			<ul>
-                <li>PRAYER</li>
-                <li>NATIONAL ANTHEM</li>
-                <li>HOW ARE YOU FEELING TODAY?</li>
-            </ul>
-	</div>
+		<ul>
+            <a href = "#" class = "vidbtn"><li>PRAYER</li></a>
+            <a href = "#" class = "vidbtn2"><li>NATIONAL ANTHEM</li></a>
+
+            <li>HOW ARE YOU FEELING TODAY?</li>
+        </ul>
+        <div class = "econtainer">
+            <div class = "emote-container">
+                <img class= "emote" src = "./assets/imhappy.png">
+                <img class= "emote" src = "./assets/imangry.png">
+                <img class= "emote" src = "./assets/imsad.png">
+                <img class= "emote" src = "./assets/imscared.png">
+            </div> 
+        </div>
 	</div>
 
 	<script>
@@ -30,7 +48,58 @@
 		btnMenu.addEventListener('click', function() {
 			menu.classList.toggle('show');
 		});
+
+        const images = document.querySelectorAll('.emote');
+
+        images.forEach((image) => {
+        image.addEventListener('click', () => {
+            // hide all other images
+            images.forEach((img) => {
+            if (img !== image) {
+                img.style.display = 'none';
+            }
+            });
+
+            if (image.classList.contains('active')) {
+                image.classList.remove('active');
+                images.forEach((img) => {
+                    img.style.display = '';
+                });
+            } else {
+                image.classList.add('active');
+            }
+        });
+        });
+
+        const vidbtn = document.querySelector('.vidbtn');
+        const vidbtn2 = document.querySelector('.vidbtn2');
+        const videoContainer = document.querySelector('.video-container');
+        const videoContainer2 = document.querySelector('.video-container2');
+        const close = document.querySelector('.close');
+
+
+        vidbtn.addEventListener('click',()=>{
+            videoContainer.classList.add('show');
+        });
+
+        vidbtn2.addEventListener('click',()=>{
+            videoContainer2.classList.add('show');
+        });
+
+        close.addEventListener('click',()=>{
+            const video = videoContainer.querySelector('video');
+            videoContainer.classList.remove('show');
+            video.pause();
+            video.currentTime = 0;
+        });
+
+        close.addEventListener('click',()=>{
+            const video2 = videoContainer2.querySelector('video2');
+            videoContainer2.classList.remove('show');
+            video2.pause();
+            video2.currentTime = 0;
+        });
+
 	</script>
 </body>
 </html>
-

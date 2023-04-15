@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+</head>
+<body>
+
+
+    <img src="{{ url_for('video_feed') }}" alt="Webcam Video" class="videofeeddiv">
+    
+    
+    <h1 id="data-display"></h1>
+    
+<script async defer>
+    
+    fetch('/get_data')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('data-display').innerHTML = `Name: ${data.name}, Age: ${data.age}`;
+    });
+
+    
+</script>
+
+</body>
+
+</html> 

@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; /* Set container height to the full height of the viewport */
+  margin: 3%;
+}
+
+body {
+  background-image: url("SKL\ Background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.main-section {
+  width: 70%;
+  height: 90vh;
+  background-color: lightblue;
+  border-radius: 10px;
+  align-items: center;
+  align-content: center;
+  display: block;
+}
+
+.button-slider {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  align-items: center;
+  align-content: center;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  scroll-snap-points-x: repeat(100%); /* Add scroll-snap-points-x property */
+  scroll-snap-type: x mandatory; 
+}
+
+.image-btn {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(122, 177, 153);
+  scroll-snap-align: start;
+  /* Use your own styles for the image buttons */
+}
+
+.side-section {
+  width: 25%; /* Set the width of side section to 30% of container */
+  height: 70vh;
+  background-color: rgb(144, 158, 238); /* Set light green background color */
+  margin-left: 2%;
+  border-radius: 10px;
+  display: block;
+}
+
+.camera-div {
+  width: 94%;
+  margin-left: 2%;
+  border-radius:10px;
+  background-color:gray;
+  height: 60%;
+  margin-top: 3%;
+}
+
+.back-to-home {
+  width: 70%;
+  height:15%;
+  background-color:#452887;
+  color: #fff;
+  margin-left: 15%;
+  margin-top: 5%;
+  border-radius:10px;
+  font-size: 30px;
+  justify-content: center;
+  text-align: center;
+  padding-top:10%;
+}
