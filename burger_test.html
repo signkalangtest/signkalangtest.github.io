@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="burger.css">
+</head>
+
+<body>
+
+    <img id="btn-menu" src = "./assets/burgerbb.png">     
+
+	<div id="menu">
+			<ul>
+                <li>PRAYER</li>
+                <li>NATIONAL ANTHEM</li>
+                <li>HOW ARE YOU FEELING TODAY?</li>
+            </ul>
+	</div>
+	</div>
+
+	<script>
+		var btnMenu = document.getElementById('btn-menu');
+		var menu = document.getElementById('menu');
+
+		btnMenu.addEventListener('click', function() {
+			menu.classList.toggle('show');
+		});
+	</script>
+</body>
+</html>
+

@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="burger.css">
+    </head>
+    <body>
+    
+    </body>
+</html>
+
+<img src = "./assets/burgerblob.png">
+
+
+<html>
+<head>
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="burger.css">
+    </head>
+</head>
+<body>
+	<button id="btn-menu">Menu
+    </button>
+	<div id="menu">
+		<ul>
+			<li>Prayer</li>
+			<li>National Anthem</li>
+			<li>How are you feeling today?</li>
+            <div class = "container">
+                <div class = "button-container">
+                    <img class= "emote" src = "./assets/imhappy.png">
+                    <img class= "emote" src = "./assets/imangry.png">
+                    <img class= "emote" src = "./assets/imsad.png">
+                    <img class= "emote" src = "./assets/imscared.png">
+                </div> 
+            </div>
+		</ul>
+	</div>
+
+	<script async defer>
+		var btnMenu = document.getElementById('btn-menu');
+		var menu = document.getElementById('menu');
+
+		btnMenu.addEventListener('click', function() {
+			menu.classList.toggle('show');
+		});
+
+        /*const eimages = document.querySelectorAll('.emote');
+
+        eimages.forEach((image) => {
+        image.addEventListener('click', () => {
+
+            eimages.forEach((img) => {
+            if (img !== image) {
+                img.style.display = 'none';
+            }
+
+            });
+            image.classList.add('active');
+        });
+
+        });*/
+	</script>
+</body>
+</html>
+
+.body {
+    margin: 0;
+    padding: 0;
+    font-family: "Comic Sans MS", "Comic Sans"
+  }
+  
+  .menu {
+    /*position: fixed;
+    top: 0;
+    right: -200px;  set initial position offscreen 
+    height: 100%;
+    background-color: #452887;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out; /* add animation */
+  
+      position: fixed;
+          top: 0;
+          right: -200px; /* set initial position offscreen */
+          width: 200px;
+          height: 100%;
+          background-color: #333;
+          color: #fff;
+          padding: 20px;
+          box-sizing: border-box;
+          transition: all 0.3s ease-in-out; /* add animation */
+  }
+  
+  .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+  }
+  
+  .menu ul li:last-child {
+    border-bottom: none;
+  }
+  
+  .menu.show {
+    right: 0; /* move menu to show on screen */
+  }
+  
+  .btn-menu {
+    position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      z-index: 999;
+  }
+  
+  .btn-menu img{
+    width: 10px;
+    height: auto;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .container {
+    width: 80%;
+    height: auto;
+  }
+  
+  .emote {
+    width: 50%;
+    height: auto;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .emote.active{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+
+  --------
+
+  #menu-container {
+	position: fixed;
+  display: block;
+  
+	top: 0;
+	right: -400px; /* set initial position offscreen */
+	width: 400px;
+	height: 100%;
+
+	background-color: #452887;
+	color: #fff;
+
+	padding: 20px;
+
+	box-sizing: border-box;
+	transition: all 0.3s ease-in-out; /* add animation */
+
+}
+
+.menu{
+  height: 20%;
+  width:auto;
+
+}
+#menu-container ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#menu-container ul li {
+	padding: 40px;
+	border-bottom: 2px solid #9486B6;
+  font-size: 200%;
+  font-weight: 1000;
+  text-align: center;
+  letter-spacing: 0.1em;
+  
+}
+
+#menu-container ul li:last-child {
+	border-bottom: none;
+}
+
+#menu-container.show {
+	right: 0; /* move menu to show on screen */
+}
