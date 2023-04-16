@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="./sntstyle.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/sntstyle.css') }}">
         <title>Sign & Translate</title>
     </head>
 
@@ -10,46 +10,198 @@
     <div class="container">
         <div class="main-section">
             <div class="text-trans">
-                <div class="translatedword">
+                <div class="translatedword" id="translatedword">
                     Translated Word
                 </div>
             </div>
           <!-- Box or container for the buttons -->
             <div class="button-slider">
                 <div class="button-container"> 
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Adjectives.png')">Button 1</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Alphabet.png')">Button 2</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\body.png')">Button 3</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Clothes.png')">Button 4</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Colors.png')">Button 5</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Drinks.png')">Button 6</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Emotions.png')">Button 7</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Family.png')">Button 8</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Food.png')">Button 9</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Fruits.png')">Button 10</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\House.png')">Button 11</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Numbers.png')">Button 12</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Objects.png')">Button 13</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Places.png')">Button 14</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Pronouns.png')">Button 15</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Shapes.png')">Button 16</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Vegetables.png')">Button 17</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Verbs.png')">Button 18</button>
-                    <button class="image-btn" style="background-image: url('assets\sat_icons\Weather.png')">Button 19</button>
+                    <button id = "adjbtn" class ="btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Adjectives.png') }}" class = "all">
+                    </button>
+                    <button id = "alphabtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Alphabet.png') }}" class = "all">
+                    </button>
+                    <button id = "bodbtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/body.png') }}" class = "all">
+                    </button>
+
+                    <button id = "clobtn" class ="btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Clothes.png') }}" class = "all">
+                    </button>
+                    <button id = "colbtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Colors.png') }}" class = "all">
+                    </button>
+                    <button id = "dribtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Drinks.png') }}" class = "all">
+                    </button>
+
+                    <button id = "emobtn" class ="btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Emotions.png') }}" class = "all">
+                    </button>
+                    <button id = "fambtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Family.png') }}" class = "all">
+                    </button>
+                    <button id = "foobtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Food.png') }}" class = "all">
+                    </button>
+
+                    <button id = "fruibtn" class ="btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Fruits.png') }}" class = "all">
+                    </button>
+                    <button id = "houbtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/House.png') }}" class = "all">
+                    </button>
+                    <button id = "numbtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Numbers.png') }}" class = "all">
+                    </button>
+
+                    <button id = "objbtn" class ="btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Objects.png') }}" class = "all">
+                    </button>
+                    <button id = "placebtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Places.png') }}" class = "all">
+                    </button>
+                    <button id = "probtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Pronouns.png') }}" class = "all">
+                    </button>
+
+                    <button id = "shapesbtn" class ="btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Shapes.png') }}" class = "all">
+                    </button>
+                    <button id = "vegbtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Vegetables.png') }}" class = "all">
+                    </button>
+                    <button id = "verbbtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Verbs.png') }}" class = "all">
+                    </button>
+                    <button id = "weabtn" class = "btn">
+                        <img src = "{{ url_for('static', filename='images/sat_icons/Weather.png') }}" class = "all">
+                    </button>
+
                 </div>
             </div>
         </div>
 
         <div class="side-section">
             <div class="camera-div">
-                <img src="./assets/imangry.png">
+                <img src="{{ url_for('video_feed') }}">
             </div>
 
             <div class="back-to-home">
-                <a href="#">BACK TO HOME</a>
+                <a href="{{ url_for('home')}}">BACK TO HOME</a>
             </div>
         </div>
 
     </div>
 </body>
+
+<script async defer>
+    // JavaScript code to handle button clicks
+    document.getElementById("adjbtn").addEventListener("click", function() {
+        sendRequest("adjectives");
+    });
+
+    document.getElementById("alphabtn").addEventListener("click", function() {
+        sendRequest("alphabet");
+    });
+
+    document.getElementById("bodbtn").addEventListener("click", function() {
+        sendRequest("body");
+    });
+
+    document.getElementById("clobtn").addEventListener("click", function() {
+        sendRequest("clothes");
+    });
+
+    document.getElementById("colbtn").addEventListener("click", function() {
+        sendRequest("colors");
+    });
+
+    document.getElementById("dribtn").addEventListener("click", function() {
+        sendRequest("drinks");
+    });
+
+    document.getElementById("emobtn").addEventListener("click", function() {
+        sendRequest("emotions");
+    });
+
+    document.getElementById("fambtn").addEventListener("click", function() {
+        sendRequest("family");
+    });
+
+    document.getElementById("foobtn").addEventListener("click", function() {
+        sendRequest("food");
+    });
+
+    document.getElementById("fruibtn").addEventListener("click", function() {
+        sendRequest("fruits");
+    });
+
+    document.getElementById("houbtn").addEventListener("click", function() {
+        sendRequest("house");
+    });
+
+    document.getElementById("numbtn").addEventListener("click", function() {
+        sendRequest("number");
+    });
+
+    document.getElementById("objbtn").addEventListener("click", function() {
+        sendRequest("objects");
+    });
+
+    document.getElementById("placebtn").addEventListener("click", function() {
+        sendRequest("places");
+    });
+
+    document.getElementById("probtn").addEventListener("click", function() {
+        sendRequest("pronouns");
+    });
+
+    document.getElementById("shapesbtn").addEventListener("click", function() {
+        sendRequest("shapes");
+    });
+
+    document.getElementById("vegbtn").addEventListener("click", function() {
+        sendRequest("vegetables");
+    });
+
+    document.getElementById("verbbtn").addEventListener("click", function() {
+        sendRequest("verb");
+    });
+
+    document.getElementById("weabtn").addEventListener("click", function() {
+        sendRequest("weather");
+    });
+
+
+
+
+
+    // Function to send HTTP request to Flask server
+    function sendRequest(buttonInfo) {
+        var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    //console.log("Response from Flask server: " + this.responseText);
+                }
+        };
+        xhttp.open("GET", "/button-clicked?info=" + buttonInfo, true);
+        xhttp.send();
+    }
+
+
+    setInterval(() => {
+        fetch('/get_data')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('translatedword').innerHTML = data;
+        });
+    }, 500); // check every 1 second
+
+</script>
+
+</html>
+
 

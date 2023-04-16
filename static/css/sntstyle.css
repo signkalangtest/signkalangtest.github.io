@@ -1,0 +1,141 @@
+*{
+  font-family: "Comic Sans MS", "Comic Sans";
+}
+
+body {
+  background-image: url("assets\bgmain.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; /* Set container height to the full height of the viewport */
+  margin-top: 2%;
+}
+
+
+.main-section {
+  display: block;
+  width: 65%;
+  height: 90vh;
+  background-color: lightblue;
+  border-radius: 10px;
+  align-items: center;
+  align-content: center;
+  margin-left: 1%;
+  
+}
+
+.text-trans{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+
+}
+
+.translatedword{
+  font-size: 8em;
+  text-align: center;
+}
+
+.button-slider {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  height: 23%;
+  margin-top: -2%;
+}
+
+.button-container {
+  /* display: flex; */
+  gap: 1rem;
+  scroll-snap-type: x mandatory; 
+  height: 100%;
+}
+
+.all{
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  height: auto;
+  margin-top: 8%;
+  box-shadow: 5px 3px 5px 0px rgba(100,138,145,0.75);
+}
+
+.btn{
+  padding:0%;
+  width: 15%;
+  height: auto;
+  scroll-snap-align: start;
+  background: none;
+  border: none;
+  margin-right: -1%;
+  border-radius: 50%;
+}
+
+
+/* .image-btn {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(122, 177, 153);
+  padding: 0; /* Set padding to 0 to create square buttons
+  object-fit: cover;
+  scroll-snap-align: start;
+  /* Use your own styles for the image buttons
+} */
+
+.side-section {
+  display: block;
+  width: 30%; /* Set the width of side section to 30% of container */
+  height: 70vh;
+   /* Set light green background color */
+  margin-left: 2%;
+  border-radius: 10px;
+}
+
+.camera-div {
+  width: 94%;
+  margin-left: 2%;
+  border-radius:10px;
+  background-color: rgb(144, 158, 238);
+  height: 100%;
+}
+
+.camera-div img{
+  margin-top: 20%;
+  width: 100%;
+}
+
+.back-to-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height:25%;
+  background-color:#452887;
+  color: #fff;
+  margin-left: 15%;
+  margin-top: 5%;
+  border-radius:10px;
+  font-size: 30px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:hover{
+  text-decoration: none;
+}
