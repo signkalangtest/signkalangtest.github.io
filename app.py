@@ -149,7 +149,7 @@ app.config['MY_GLOBAL_VAR'] = 'Hello, world!'
 
 @app.route('/')
 def home():
-    return render_template('test.html')
+    return render_template('index.html')
 
 
 @app.route('/video_feed')

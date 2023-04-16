@@ -13,18 +13,18 @@
     <div class="home">
         <div class="navbar">
             <div class="bg-image">
-                <img id="btn-logo" src = "./assets/logoll.png">
-                <img id="btn-menu" src = "./assets/burgerbb.png">
+                <img id="btn-logo" src = "{{ url_for('static', filename='images/logoll.png') }}">
+                <img id="btn-menu" src = "{{ url_for('static', filename='images/burgerbb.png') }}">
                 
 
                 <div class="video-container">
                     <span class = "close"> &#10006;</span>
-                    <video src = "./assets/prayer.mp4" controls class = "video"></video>
+                    <video src = "{{ url_for('static', filename='images/prayer.mp4') }}" controls class = "video"></video>
                 </div>
 
                 <div class="video-container2">
                     <span class = "close2"> &#10006;</span>
-                    <video src = "./assets/nationalanthem.mp4" controls class = "video2"></video>
+                    <video src = "{{ url_for('static', filename='images/nationalanthem.mp4') }}" controls class = "video2"></video>
                 </div>
 
                 <div id="menu">
@@ -38,10 +38,10 @@
                     </ul>
                     <div class = "econtainer">
                         <div class = "emote-container">
-                            <img class= "emote" src = "./assets/imhappy.png">
-                            <img class= "emote" src = "./assets/imangry.png">
-                            <img class= "emote" src = "./assets/imsad.png">
-                            <img class= "emote" src = "./assets/imscared.png">
+                            <img class= "emote" src = "{{ url_for('static', filename='images/imhappy.png') }}">
+                            <img class= "emote" src = "{{ url_for('static', filename='images/imangry.png') }}">
+                            <img class= "emote" src = "{{ url_for('static', filename='images/imsad.png') }}">
+                            <img class= "emote" src = "{{ url_for('static', filename='images/imscared.png') }}">
                         </div> 
                     </div>
                 </div> 
@@ -52,13 +52,13 @@
             <div class="maincontainer">
                 <div class="sandtdiv">
                     <a href="#">
-                        <img src="./assets/sandt.png">
+                        <img src="{{ url_for('static', filename='images/sandt.png') }}">
                     </a>    
                 </div>
             
                 <div class="tasdiv">
                     <a href="#">
-                        <img src="./assets/tas.png" >
+                        <img src="{{ url_for('static', filename='images/tas.png') }}" >
                     </a>  
                 </div>
             
@@ -71,10 +71,10 @@
                         
                         <div class = "container">
                             <div class = "button-container">
-                                <img class= "weather" src = "./assets/sunny.png">
-                                <img class= "weather" src = "./assets/cloudy.png">
-                                <img class= "weather" src = "./assets/rainy.png">
-                                <img class= "weather" src = "./assets/windy.png">
+                                <img class= "weather" src = "{{ url_for('static', filename='images/sunny.png') }}">
+                                <img class= "weather" src = "{{ url_for('static', filename='images/cloudy.png') }}">
+                                <img class= "weather" src = "{{ url_for('static', filename='images/rainy.png') }}">
+                                <img class= "weather" src = "{{ url_for('static', filename='images/windy.png') }}">
                             </div> 
                         </div>
                     </div>
