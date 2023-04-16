@@ -40,7 +40,7 @@ def draw_landmarks(image, results):
 
 def draw_styled_landmarks(image, results):
     # # Draw face connections
-    mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACE_CONNECTIONS, 
+    mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_CONTOURS, 
                              mp_drawing.DrawingSpec(color=(80,110,10), thickness=1, circle_radius=1), 
                              mp_drawing.DrawingSpec(color=(80,256,121), thickness=1, circle_radius=1)
                             ) 
@@ -94,22 +94,25 @@ def generate():
     sequence_length = 30
     threshold = 0.5
     
-    actions = ['APPLE', 'BANANA', 'COCONUT', 'MANGO', 'PINEAPPLE', 'STRAWBERRY',
-       'WATERMELON']
+    actions = np.array(['APPLE', 'BANANA', 'COCONUT', 'MANGO', 'PINEAPPLE', 'STRAWBERRY',
+       'WATERMELON'])
     
     
     
     
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     with mp_holistic.Holistic(min_detection_confidence=0.1, min_tracking_confidence=0.1) as holistic:
         while True:
             
-            
+            category = "fruits"
             category = app.config['category']
                             
             lstmcategory = ['fruits','vegtables']
             grucategory = ['places','shapes','adjectives','drinks','weather','house']
             customgrucategory = ['school','pronouns','verbs','foods','body','clothes']
+
+
+            model_path = os.path.join(os.path.dirname(__file__),'static','models','FRUITS','normal','accalphamodel45.h5')
 
             if category == 'adjectives':
                 actions = np.array(['BEAUTIFUL', 'BIG', 'CUTE', 'DRY', 'EASY',
@@ -229,7 +232,7 @@ def generate():
                 model_path = os.path.join(os.path.dirname(__file__),'static','models','WEATHER','gru','accalphamodel45.h5')
 
             
-            
+            print(actions.shape[0])
             # first case is normal lstm
             if category in lstmcategory :
     
@@ -244,17 +247,6 @@ def generate():
             #second case is base gru model
             elif category in customgrucategory:
                 model = Sequential()
-                model.add(GRU(64, return_sequences=True, activation='relu',input_shape=(45,258)))
-                model.add(GRU(128, return_sequences=True, activation='relu'))
-                model.add(GRU(64, return_sequences=False, activation='relu'))
-                model.add(Dense(64, activation='relu'))
-                model.add(Dense(32, activation='relu'))
-                model.add(Dense(actions.shape[0], activation='softmax'))
-            
-        
-            #third case is configured gru mode; 
-            elif category in grucategory:
-                model = Sequential()
                 model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(45,258)))
                 model.add(Dropout(0.1))
                 model.add(Dense(64, activation='relu'))
@@ -265,9 +257,20 @@ def generate():
                 model.add(BatchNormalization())
                 model.add(Dense(32, activation='relu'))
                 model.add(Dense(actions.shape[0], activation='softmax'))
+            
+        
+            #third case is configured gru mode; 
+            elif category in grucategory:
+                model = Sequential()
+                model.add(GRU(64, return_sequences=True, activation='relu',input_shape=(45,258)))
+                model.add(GRU(128, return_sequences=True, activation='relu'))
+                model.add(GRU(64, return_sequences=False, activation='relu'))
+                model.add(Dense(64, activation='relu'))
+                model.add(Dense(32, activation='relu'))
+                model.add(Dense(actions.shape[0], activation='softmax'))
            
                 
-            model.load_weights(model_path))
+            model.load_weights(model_path)
     
             ret, frame = cap.read()
             
@@ -329,7 +332,7 @@ def showvideo():
 
 app = Flask(__name__)
 app.config['translatedword'] = 'Translated Word'
-app.config['category'] = 'Test'
+app.config['category'] = 'none'
 
 @app.route('/')
 def home(): 
@@ -376,4 +379,4 @@ def tas():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
