@@ -5,30 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Show the first carousel by default
-            $("#carousel1").addClass("active");
-            $("#carousel1 .carousel-item:first-child").addClass("active");
-            $("#carousel1 .carousel-indicator:first-child").addClass("active");
-          
-            // Handle button clicks
-            $(".carousel-button").click(function() {
-              // Get the ID of the clicked button's carousel
-              var carouselId = $(this).data("carousel-id");
-          
-              // Remove the active class from all carousel items and indicators
-              $(".carousel-item").removeClass("active");
-              $(".carousel-indicator").removeClass("active");
-          
-              // Add the active class to the selected carousel's items and indicators
-              $("#" + carouselId).addClass("active");
-              $("#" + carouselId + " .carousel-item:first-child").addClass("active");
-              $("#" + carouselId + " .carousel-indicator:first-child").addClass("active");
-            });
-          });
-          
-    </script>
+    <link rel ="stylesheet" href = "carousel_scratch.css"> 
   </head>
   <body>
     <div class="container">
@@ -37,15 +14,21 @@
           <div class="mainsection">
             <div id="carousel1" class="carousel">
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="./assets/bfast.png" alt="First slide">
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="./assets/gifs/TMIM1.gif" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="./assets/body.png" alt="Second slide">
+                  <img class="d-block w-100" src="./assets/gifs/TMIM2.gif" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="./assets/clothes.png" alt="Third slide">
+                  <img class="d-block w-100" src="./assets/gifs/TMIM3.gif" alt="Third slide">
                 </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="./assets/gifs/TMIM4.gif" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/TMIM5.gif" alt="Fifth slide">
+                  </div>
               </div>
               <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -60,14 +43,31 @@
             <div id="carousel2" class="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="carousel2-image1.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="carousel2-image2.jpg" alt="Second slide">
+                  <img class="d-block w-100" src="./assets/gifs/AAK1.gif" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="carousel2-image3.jpg" alt="Third slide">
+                  <img class="d-block w-100" src="./assets/gifs/AAK2.gif" alt="Second slide">
                 </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="./assets/gifs/AAK3.gif" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/AAK4.gif" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/AAK5.gif" alt="Fifth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/AAK6.gif" alt="Sixth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/AAK7.gif" alt="Seventh slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/AAK8.gif" alt="Eight slide">
+                </div>
+                
+                
               </div>
               <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -83,13 +83,22 @@
             <div id="carousel3" class="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="carousel3-image1.jpg" alt="First slide">
+                  <img class="d-block w-100" src="./assets/gifs/WWWT1.gif" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="carousel3-image2.jpg" alt="Second slide">
+                  <img class="d-block w-100" src="./assets/gifs/WWWT2.gif" alt="Second slide">
                 </div>
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="carousel3-image3.jpg" alt="Third slide">
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="./assets/gifs/WWWT3.gif" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/WWWT4.gif" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/WWWT5.gif" alt="Fifth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="./assets/gifs/WWWT6.gif" alt="Sixth slide">
                 </div>
               </div>
               <a class="carousel-control-prev" href="#carousel3" role="button" data-slide="prev">
@@ -111,6 +120,33 @@
         </div>
       </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Hide all carousels by default
+            $(".carousel").hide();
+          
+            // Show the first carousel by default
+            $("#carousel1").show();
+            $("#carousel1 .carousel-item:first-child").addClass("active");
+            $("#carousel1 .carousel-indicator:first-child").addClass("active");
+          
+            // Handle button clicks
+            $(".carousel-button").click(function() {
+              // Get the ID of the clicked button's carousel
+              var carouselId = $(this).data("carousel-id");
+          
+              // Hide all carousels
+              $(".carousel").hide();
+          
+              // Show the selected carousel
+              $("#" + carouselId).show();
+              $("#" + carouselId + " .carousel-item:first-child").addClass("active");
+              $("#" + carouselId + " .carousel-indicator:first-child").addClass("active");
+            });
+          });
+          
+    </script>
 </body>
 </html>
               
