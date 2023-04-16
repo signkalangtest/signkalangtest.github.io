@@ -48,6 +48,11 @@ body {
   /* Use your own styles for the image buttons */
 }
 
+.stories{
+  width:100%;
+  height:auto;
+}
+
 .side-section {
   width: 25%; /* Set the width of side section to 30% of container */
   height: 70vh;
@@ -68,7 +73,7 @@ body {
 
 .back-to-home {
   width: 70%;
-  height:15%;
+  height:20%;
   background-color:#452887;
   color: #fff;
   margin-left: 15%;
@@ -78,4 +83,10 @@ body {
   justify-content: center;
   text-align: center;
   padding-top:10%;
+}
+
+.sback a{
+  text-decoration: none;
+  color: white;
+  
 }

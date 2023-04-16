@@ -3,7 +3,8 @@ html, body {
   padding: 0px;
 }
 *{
-    font-family: "Comic Sans MS", "Comic Sans"
+  /* border: 1px solid red;   */
+  font-family: "Comic Sans MS", "Comic Sans"
 }
 
 body{
@@ -111,13 +112,14 @@ body{
   height: auto;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
+  z-index: 1;
 }
 
 .weather.active{
   position: relative;
   top: 1;
-  left: 5%;
-  width: 90%;
+  left: 10%;
+  width: 80%;
   height: auto;
   z-index: 1;
 
@@ -137,6 +139,7 @@ body{
   box-sizing: border-box;
   transition: all 0.3s ease-in-out; /* add animation */
   border-radius: 50px 0px 0px 50px;
+  z-index: 999;
 }
 
 #menu .closemenu{
