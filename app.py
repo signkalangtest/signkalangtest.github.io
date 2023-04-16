@@ -87,8 +87,7 @@ def generate():
     model.add(Dense(64, activation='relu'))
     model.add(Dense(32, activation='relu'))
     model.add(Dense(7, activation='softmax'))
-    model.load_weights(os.path.join(os.path.dirname(__file__),'static','models','fruits','lossalphamodel45.h5'))
-    
+
     sequence = []
     sentence = []
     predictions = []
@@ -108,14 +107,16 @@ def generate():
             
             category = app.config['category']
                             
-            lstmcategory = ['']
-            grucategory = ['']
-            customgrucategory = ['']
+            lstmcategory = ['fruits','vegtables']
+            grucategory = ['places','shapes','adjectives','drinks','weather','house']
+            customgrucategory = ['school','pronouns','verbs','foods','body','clothes']
 
             if category == 'adjectives':
                 actions = np.array(['BEAUTIFUL', 'BIG', 'CUTE', 'DRY', 'EASY',
                                     'HANDSOME', 'HARD', 'HUNGRY', 'SHORT', 'SMALL',
                                     'SOFT', 'STRONG', 'TALL', 'TIRED', 'UGLY', 'WEAK'])
+
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','ADJECTIVES','gru','lossalphamodel45.h5')
 
             elif category == 'alphabet':
                 actions = np.array(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
@@ -127,21 +128,25 @@ def generate():
                                     'ELBOW', 'EYEBROWS', 'EYES', 'FACE', 'FEET',
                                     'FINGERS', 'HAIR', 'HAND', 'HEAD', 'LIPS',
                                     'MOUTH', 'NECK', 'NOSE', 'SHOULDER'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','BODY','gru','accalphamodel45.h5')
 
             elif category == 'clothes':
                 actions = np.array(['BACKPACK', 'BAG', 'BELT', 'BRA', 'BRACELET',
                                     'BRIEF', 'CAP', 'DRESS', 'EARRING', 'EYEGLASS', 
                                     'HANKY', 'HAT', 'JACKET', 'PANTY','RUBBER',
                                     'SANDO', 'SHOES', 'SKIRT', 'SLIPPER', 'SOCKS', 'TSHIRT'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','CLOTHES','kent','accalphamodel45.h5')
 
             elif category == 'colors':
                 actions = np.array(['BLACK', 'BLUE', 'GRAY', 'GREEN', 'ORANGE', 'PINK', 
                                     'PURPLE','RED', 'VIOLET', 'WHITE', 'YELLOW'])
 
+
             elif category == 'drinks':
                 actions = np.array(['COFFEE', 'DRINK', 'DRINK MILK', 'DRINK WATER',
                                     'HOT CHOCOLATE', 'JUICE', 'SODA', 'TEA'])
-                
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','DRINKS','gru','lossalphamodel45.h5')
+            
             elif category == 'emotions':
                 actions = np.array(['ANGRY', 'ANNOY', 'HAPPY', 'HUNGRY', 'LOVE', 'SAD', 
                                     'SCARED','SHOCK', 'SORRY', 'SURPRISE', 'WORRY'])
@@ -154,15 +159,19 @@ def generate():
                 actions = np.array(['BREAD', 'BREAKFAST', 'BUTTER', 'CEREAL', 'CHICKEN',
                                     'DINNER', 'EGG', 'FOOD', 'HAM', 'HONEY', 'HOTDOG',
                                     'LONGGANISA', 'LUNCH', 'MAYO', 'PANCAKE', 'RICE', 'TOCINO'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','FOODS','kent','accalphamodel45.h5')
 
             elif category == 'fruits':
                 actions = np.array(['APPLE', 'BANANA', 'COCONUT', 'MANGO',
                                     'PINEAPPLE', 'STRAWBERRY', 'WATERMELON'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','FRUITS','normal','accalphamodel45.h5')
 
             elif category == 'house':
                 actions = np.array(['BED', 'BRUSHING TEETH', 'CALENDAR', 'CEILING',
                                     'CLEAN', 'DOOR', 'FLOOR', 'PHONE', 'SHOWER',
                                     'TABLE', 'TAKE A BATH', 'WINDOW'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','HOUSE','gru','accalphamodel45.h5')
+
 
             elif category == 'number':
                 actions = np.array(['ONE (1)', 'TEN (10)', 'ELEVEN (11)', 'TWELVE (12)',
@@ -177,24 +186,31 @@ def generate():
                                     'CHURCH', 'CLINIC', 'COMPUTER SHOP', 'CONVENIENCE STORE',
                                     'FIRE STATION', 'HAIR SALON', 'HOSPITAL', 'MALL', 
                                     'MARKET', 'NEIGHBORHOOD', 'PHARMACY','PULIS STATION', 'SCHOOL'])
-            
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','PLACES','gru','lastepochalpha.h5')
+
             elif category == 'pronouns':
                 actions = np.array(['HE', 'HER', 'HERS', 'HIM', 'HIS', 'I', 'IT',
                                     'MINE', 'MY', 'OUR', 'SHE', 'THAT', 'THEIR',
                                     'THEM', 'THESE', 'THEY', 'THIS', 'THOSE',
                                     'US', 'WE', 'YOU', 'YOURS'])
-            
-            elif category == 'objects':
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','PRONOUNS','kent','lastepochalpha.h5')
+
+
+            elif category == 'school':
                 actions = np.array(['BACKPACK', 'BAG', 'BOOK', 'ERASER', 'EYEGLASS', 
                                     'PAPER', 'PENCIL', 'RULER', 'STAPLER'])
-            
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','SCHOOL','kent','accalphamodel45.h5')
+
             elif category == 'shapes':
                 actions = np.array(['CIRCLE', 'DIAMOND', 'HEART', 'OVAL', 
                                     'RECTANGLE', 'SQUARE', 'STAR', 'TRIANGLE'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','SHAPES','gru','lossalphamodel45.h5')
 
             elif category == 'vegetables':
                 actions = np.array(['AMPALAYA', 'BEANS', 'CABBAGE', 'ONION', 
                                     'SQUASH', 'TOMATO'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','VEGGIES','normal','accalphamodel45.h5')
+
 
             elif category == 'verb':
                 actions = np.array(['ASK', 'BATH', 'BREAK', 'BRING', 'BUY',
@@ -205,10 +221,13 @@ def generate():
                                     'MAKE', 'PAY', 'PRAY', 'READ', 'REST', 'RUN',
                                     'SEE', 'SING', 'SIT', 'STAND', 'STUDY',
                                     'WALK', 'WANT', 'WRITE'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','VERB','kent','lossalphamodel45.h5')
 
             elif category == 'weather':
                 actions = np.array(['CLOUD', 'HOT', 'LIGHTING', 'RAIN', 'RAINBOW', 
                                     'STORM', 'SUN', 'THUNDER', 'TORNADO'])
+                model_path = os.path.join(os.path.dirname(__file__),'static','models','WEATHER','gru','accalphamodel45.h5')
+
             
             
             # first case is normal lstm
@@ -248,7 +267,8 @@ def generate():
                 model.add(Dense(actions.shape[0], activation='softmax'))
            
                 
-            
+            model.load_weights(model_path))
+    
             ret, frame = cap.read()
             
             if not ret:
