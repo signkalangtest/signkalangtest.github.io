@@ -35,7 +35,7 @@ body {
 
 .button-container {
   display: flex;
-  gap: 1rem;c
+  gap: 1rem;
   scroll-snap-type: x mandatory; 
 }
 
