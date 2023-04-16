@@ -13,10 +13,9 @@
     <div class="home">
         <div class="navbar">
             <div class="bg-image">
-                <img id="btn-logo" src = "{{ url_for('static', filename='images/logoll.png') }}">
+                <img id="btn-logo" src = "{{ url_for('static', filename='images/logoll.png') }}" class = "logovid">
                 <img id="btn-menu" src = "{{ url_for('static', filename='images/burgerbb.png') }}">
                 
-
                 <div class="video-container">
                     <span class = "close"> &#10006;</span>
                     <video src = "{{ url_for('static', filename='images/prayer.mp4') }}" controls class = "video"></video>
@@ -25,6 +24,11 @@
                 <div class="video-container2">
                     <span class = "close2"> &#10006;</span>
                     <video src = "{{ url_for('static', filename='images/natanthem.mp4') }}" controls class = "video2"></video>
+                </div>
+
+                <div class="video-container3">
+                    <span class = "close3"> &#10006;</span>
+                    <video src = "{{ url_for('static', filename='images/teamvid.mp4') }}" controls class = "video3"></video>
                 </div>
 
                 <div id="menu">
@@ -83,10 +87,6 @@
         </div>
     </div>
     
-
-
-    
-      
 
 <script async defer>
     $( document ).ready(function() {
@@ -155,10 +155,18 @@
 
         const vidbtn = document.querySelector('.vidbtn');
         const vidbtn2 = document.querySelector('.vidbtn2');
+        const logovid = document.querySelector('.logovid');
+
         const videoContainer = document.querySelector('.video-container');
         const videoContainer2 = document.querySelector('.video-container2');
+        const videoContainer3 = document.querySelector('.video-container3');
+
+
         const close = document.querySelector('.close');
         const close2 = document.querySelector('.close2');
+        const close3 = document.querySelector('.close3');
+        
+
         const closeMenu = document.querySelector('.closemenu');
 
 
@@ -168,6 +176,10 @@
 
         vidbtn2.addEventListener('click',()=>{
             videoContainer2.classList.add('show');
+        });
+
+        logovid.addEventListener('click',()=>{
+            videoContainer3.classList.add('show');
         });
 
         close.addEventListener('click',()=>{
@@ -182,6 +194,13 @@
             videoContainer2.classList.remove('show');
             video2.pause();
             video2.currentTime = 0;
+        });
+
+        close3.addEventListener('click',()=>{
+            const video3 = videoContainer3.querySelector('video3');
+            videoContainer3.classList.remove('show');
+            video3.pause();
+            video3.currentTime = 0;
         });
 
         closeMenu.addEventListener('click',()=>{
