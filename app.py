@@ -74,25 +74,33 @@ def extract_keypoints(results):
 
 #normal
 
-model = Sequential()
-model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(15,126)))
-model.add(LSTM(128, return_sequences=True, activation='relu'))
-model.add(LSTM(64, return_sequences=False, activation='relu'))
-model.add(BatchNormalization())
-model.add(Dense(64, activation='relu'))
-model.add(Dense(32, activation='relu'))
-model.add(Dense(21, activation='softmax'))
+
 
 
 
 # Define a function to generate the video stream
 def generate():
+    
+    
+    model = Sequential()
+    model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(30,258)))
+    model.add(LSTM(128, return_sequences=True, activation='relu'))
+    model.add(LSTM(64, return_sequences=False, activation='relu'))
+    model.add(Dense(64, activation='relu'))
+    model.add(Dense(32, activation='relu'))
+    model.add(Dense(7, activation='softmax'))
+    
+    
     sequence = []
     sentence = []
     predictions = []
     sequence_length = 30
     threshold = 0.5
-
+    actions = ['APPLE', 'BANANA', 'COCONUT', 'MANGO', 'PINEAPPLE', 'STRAWBERRY',
+       'WATERMELON']
+    
+    
+    
     cap = cv2.VideoCapture(1)
     with mp_holistic.Holistic(min_detection_confidence=0.1, min_tracking_confidence=0.1) as holistic:
         while True:
@@ -100,6 +108,7 @@ def generate():
             if not ret:
                 break
             else:
+                print(actions)
                 print('yy')
                 image, results = mediapipe_detection(frame, holistic)
                 # Make detections
@@ -107,13 +116,11 @@ def generate():
                 
                 # Draw landmarks
                 draw_styled_landmarks(image, results)
-                
+                app.config['MY_GLOBAL_VAR'] = 'going in'
                 # 2. Prediction logic
                 keypoints = extract_keypoints(results)
                 sequence.append(keypoints)
                 sequence = sequence[-sequence_length:]
-                
-                app.config['Prediction_Word'] = 'hello'
                 
                 # Convert the frame to JPEG format
                 ret, buffer = cv2.imencode('.jpg', frame)
@@ -125,6 +132,7 @@ def generate():
 
 
 app = Flask(__name__)
+app.config['MY_GLOBAL_VAR'] = 'Hello, world!'
 
 @app.route('/')
 def home():
@@ -140,7 +148,7 @@ def video_feed():
 
 @app.route('/get_data')
 def get_data():
-    data = g.predictedword 
+    data = app.config['MY_GLOBAL_VAR']
     return data
 
 @app.route('/button-clicked')

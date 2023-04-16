@@ -18,12 +18,13 @@
     <h1 id="data-display"></h1>
     
 <script async defer>
-
+    setInterval(() => {
         fetch('/get_data')
         .then(response => response.text())
         .then(data => {
             document.getElementById('data-display').innerHTML = data;
         });
+    }, 1000); // check every 1 second
 
 </script>
 
