@@ -1,0 +1,29 @@
+
+.container {
+    display: flex; /* Use Flexbox */
+    flex-wrap: wrap;
+    width: 100%; /* Set container height to the full height of the viewport */
+  }
+
+ 
+
+  
+  body {
+    background-image: url("SKL\ Background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .main-section {
+    background-color: white;
+    /* Content styling for main section */
+    width: 60%;
+  }
+
+  .side-section {
+    width: 30%;
+    background-color: white;
+  }
+
+  

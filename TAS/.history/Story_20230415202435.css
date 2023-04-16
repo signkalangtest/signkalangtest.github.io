@@ -1,0 +1,58 @@
+
+.container {
+    display: flex; /* Use Flexbox */
+    flex-wrap: wrap;
+    width: 100%; /* Set container height to the full height of the viewport */
+  }
+
+  .main-section {
+    margin: 20px;
+    border-radius: 2%;
+    background-color: white;
+    /* Content styling for main section */
+    width: 100%;
+  }
+
+  
+  body {
+    background-image: url("SKL\ Background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .translation{
+    border-radius: 2%;
+    text-align: center;
+    position: absolute;
+    width: 990px;
+    height: 170px;
+    left: 40px;
+    top: 845px;
+    background-color: #8B8B8B;
+  }
+
+  .side-section {
+    
+  }
+
+  .back-to-home-button {
+    /* Add other styles for the button */
+   position: absolute; /* Use absolute positioning to center align the button */
+   left: 50%; /* Position the button at 50% from the left of the side section */
+   transform: translateX(-50%);
+   /* Add border radius for rounded corners */
+   border-radius: 10px; /* You can adjust the value as per your preference */
+   /* Styling for "Back to Home" button with rounded corners and color background */
+   background-color: #411576; /* Set desired background color */
+   color: #fff; /* Set desired text color */
+   justify-content: center;
+   padding-left: 20px;
+   font-size: 50px;
+   cursor: pointer;
+   border: none;
+   width: 468px;
+   height: 122px;
+   top: 775px;
+   text-align: center;
+   padding-right: 20px;
+ }

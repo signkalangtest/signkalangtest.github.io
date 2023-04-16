@@ -1,0 +1,27 @@
+.container {
+    display: flex; /* Use Flexbox */
+    height: 50vh; /* Set container height to the full height of the viewport */
+  }
+
+  
+  .main-section {
+    flex-grow: 1; /* Take up remaining space and grow to fill more than half of the screen */
+    padding: 20px; /* Add padding for spacing */
+    margin: 0 4px;
+    border-radius: 2%;
+    /* Content styling for main section */
+   
+  }
+
+  body {
+    background-image: url("SKL\ Background.png");
+    background-repeat: no-repeat;
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+  }
+position: absolute;
+width: 990px;
+height: 170px;
+left: 80px;
+top: 874px;
