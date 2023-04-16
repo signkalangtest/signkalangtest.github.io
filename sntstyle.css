@@ -35,8 +35,7 @@ body {
 
 .button-container {
   display: flex;
-  gap: 1rem;
-  scroll-snap-points-x: repeat(100%); /* Add scroll-snap-points-x property */
+  gap: 1rem;c
   scroll-snap-type: x mandatory; 
 }
 
@@ -44,7 +43,7 @@ body {
   width: 100px;
   height: 100px;
   background-color: rgb(122, 177, 153);
-  padding: 20; /* Set padding to 0 to create square buttons */
+  padding: 0; /* Set padding to 0 to create square buttons */
   object-fit: cover;
   scroll-snap-align: start;
   /* Use your own styles for the image buttons */

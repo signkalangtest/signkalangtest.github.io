@@ -7,7 +7,6 @@ from matplotlib import pyplot as plt
 import time
 import mediapipe as mp
 
-
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
@@ -67,7 +66,7 @@ def extract_keypoints(results):
     face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
     lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
     rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
-    return np.concatenate([lh, rh, pose, face])
+    return np.concatenate([lh, rh, pose])
 
 
 
@@ -89,7 +88,7 @@ def generate():
     model.add(Dense(64, activation='relu'))
     model.add(Dense(32, activation='relu'))
     model.add(Dense(7, activation='softmax'))
-    
+    model.load_weights(os.path.join(os.path.dirname(__file__),'static','models','fruits','lossalphamodel45.h5'))
     
     sequence = []
     sentence = []
@@ -108,19 +107,33 @@ def generate():
             if not ret:
                 break
             else:
-                print(actions)
-                print('yy')
-                image, results = mediapipe_detection(frame, holistic)
+                
                 # Make detections
                 image, results = mediapipe_detection(frame, holistic)
                 
                 # Draw landmarks
                 draw_styled_landmarks(image, results)
-                app.config['MY_GLOBAL_VAR'] = 'going in'
+                
                 # 2. Prediction logic
                 keypoints = extract_keypoints(results)
                 sequence.append(keypoints)
                 sequence = sequence[-sequence_length:]
+                if len(sequence) == sequence_length :
+                    res = model.predict(np.expand_dims(sequence, axis=0))[0]
+                    
+                    predictions.append(np.argmax(res))
+                    
+                #3. Viz logic
+                    if np.unique(predictions[-10:])[0]==np.argmax(res): 
+                        if res[np.argmax(res)] > threshold: 
+                            
+                            if len(sentence) > 0: 
+                                if actions[np.argmax(res)]:
+                                    sentence = actions[np.argmax(res)]
+                            else:
+                                sentence = actions[np.argmax(res)] 
+                    app.config['MY_GLOBAL_VAR'] = actions[np.argmax(res)] 
+                
                 
                 # Convert the frame to JPEG format
                 ret, buffer = cv2.imencode('.jpg', frame)
@@ -149,7 +162,7 @@ def video_feed():
 @app.route('/get_data')
 def get_data():
     data = app.config['MY_GLOBAL_VAR']
-    return data
+    return str(data)
 
 @app.route('/button-clicked')
 def handle_button_click():

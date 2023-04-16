@@ -11,9 +11,16 @@
 </head>
 <body>
 
+    <div style="display:flex">
+        <div style='margin-right:500px'>
+            fasdfas
+        </div>
 
-    <img src="{{ url_for('video_feed') }}" alt="Webcam Video" class="videofeeddiv">
-    
+
+        <div style='margin-right:100px'>
+            <img src="{{ url_for('video_feed') }}" alt="Webcam Video" class="videofeeddiv" style='width:500px;border-radius:50px'>
+        </div>
+    </div>
     
     <h1 id="data-display"></h1>
     
@@ -24,7 +31,7 @@
         .then(data => {
             document.getElementById('data-display').innerHTML = data;
         });
-    }, 1000); // check every 1 second
+    }, 500); // check every 1 second
 
 </script>
 
