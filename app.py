@@ -99,12 +99,11 @@ def generate():
     model.add(Dense(actions.shape[0], activation='softmax'))
     
     
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     with mp_holistic.Holistic(min_detection_confidence=0.1, min_tracking_confidence=0.1) as holistic:
         while True:
             
             category = app.config['category']
-            print(category)
             lstmcategory = ['fruits','vegtables']
             grucategory = ['places','shapes','adjectives','drinks','weather','house']
             customgrucategory = ['school','pronouns','verbs','foods','body','clothes']
@@ -243,8 +242,6 @@ def generate():
                 model_path = os.path.join(os.path.dirname(__file__),'static','models','WEATHER','gru','accalphamodel45.h5')
                 sequence_length = 45
 
-            
-            print(actions.shape[0])
             # first case is normal lstm
             if category in lstmcategory :
     
