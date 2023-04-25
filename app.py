@@ -61,12 +61,16 @@ def draw_styled_landmarks(image, results):
                              mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2)
                              ) 
 
-def extract_keypoints(results):
+def extract_keypoints(results,category):
     pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
     face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
     lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
     rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
-    return np.concatenate([lh, rh, pose])
+    
+    if category=='alphabet':
+        return np.concatenate([rh])
+    else:
+        return np.concatenate([lh, rh, pose])
 
 
 
@@ -84,33 +88,39 @@ def generate():
     sequence = []
     sentence = []
     predictions = []
-    sequence_length = 30
-    threshold = 0.5
-    temp = 'fruits'
-    actions = np.array(['APPLE', 'BANANA', 'COCONUT', 'MANGO', 'PINEAPPLE', 'STRAWBERRY',
-       'WATERMELON'])
+    sequence_length = 20
+    threshold = 0.7
+    temp = 'alphabet'
+    actions = np.array(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+                                        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+                                        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
     
     model = Sequential()
-    model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(30,258)))
-    model.add(LSTM(128, return_sequences=True, activation='relu'))
-    model.add(LSTM(64, return_sequences=False, activation='relu'))
+    model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(sequence_length,63)))
+    model.add(Dropout(0.1))
     model.add(Dense(64, activation='relu'))
+    model.add(GRU(64, return_sequences=True, activation='relu'))
+    model.add(Dropout(0.1))
+    model.add(Dense(64, activation='relu'))
+    model.add(GRU(32, return_sequences=False, activation='relu'))
+    model.add(BatchNormalization())
     model.add(Dense(32, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
-    
-    model_path = os.path.join(os.path.dirname(__file__),'static','models','FRUITS','normal','accalphamodel45.h5')
+
+    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lossalphamodel45.h5')
     
     model.load_weights(model_path)
      
     cap = cv2.VideoCapture(1)
+    
     with mp_holistic.Holistic(min_detection_confidence=0.1, min_tracking_confidence=0.1) as holistic:
         while True:
             
             category = app.config['category']
             
             lstmcategory = ['fruits','vegtables']
-            grucategory = ['places','shapes','adjectives','drinks','weather','house','body']
-            customgrucategory = ['school','pronouns','verbs','foods','clothes']
+            grucategory = ['places','shapes','adjectives','drinks','weather','house']
+            customgrucategory = ['school','pronouns','verbs','foods','clothes','alphabet','body']
 
 
             
@@ -128,14 +138,18 @@ def generate():
                     actions = np.array(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
                                         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
                                         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lossalphamodel45.h5')
+                    sequence_length = 20
+                    threshold = 0.5
+                    
                 elif category == 'body':
                     actions = np.array(['ARM', 'BODY', 'CHEEK', 'CHIN', 'EARS', 
                                         'ELBOW', 'EYEBROWS', 'EYES', 'FACE', 'FEET',
                                         'FINGERS', 'HAIR', 'HAND', 'HEAD', 'LIPS',
                                         'MOUTH', 'NECK', 'NOSE', 'SHOULDER'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','BODY','kent','accalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','BODY','kent','lossalphamodel45.h5')
                     sequence_length = 30
+                    threshold = 0.7
 
                 elif category == 'clothes':
                     actions = np.array(['BACKPACK', 'BAG', 'BELT', 'BRA', 'BRACELET',
@@ -285,11 +299,9 @@ def generate():
                     model.add(Dense(actions.shape[0], activation='softmax'))
             
                 model.load_weights(model_path)   
-                
+                sequence = [] 
     
             ret, frame = cap.read()
-            
-           
             
             if not ret:
                 break
@@ -301,7 +313,7 @@ def generate():
                 draw_styled_landmarks(image, results)
                 
                 # 2. Prediction logic
-                keypoints = extract_keypoints(results)
+                keypoints = extract_keypoints(results,category)
                 sequence.append(keypoints)
                 sequence = sequence[-sequence_length:]
                 if len(sequence) == sequence_length :
@@ -350,7 +362,7 @@ def showvideo():
 
 app = Flask(__name__)
 app.config['translatedword'] = 'Translated Word'
-app.config['category'] = 'fruits'
+app.config['category'] = 'alphabet'
 
 @app.route('/')
 def home(): 
