@@ -121,7 +121,7 @@ def generate():
             
             lstmcategory = ['fruits','vegtables']
             grucategory = ['places','shapes','adjectives','drinks','weather','house']
-            customgrucategory = ['school','pronouns','verbs','foods','clothes','alphabet','body' ,'numbers']
+            customgrucategory = ['school','pronouns','verbs','foods','clothes','alphabet','body' ,'numbers','emotions','family']
 
 
             
@@ -170,7 +170,10 @@ def generate():
                 elif category == 'colors':
                     actions = np.array(['BLACK', 'BLUE', 'GRAY', 'GREEN', 'ORANGE', 'PINK', 
                                         'PURPLE','RED', 'VIOLET', 'WHITE', 'YELLOW'])
-
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','COLORS','kent','accalphamodel45.h5')
+                    sequence_length = 45
+                    threshold = 0.7
+                    no_keypoints = 258
 
                 elif category == 'drinks':
                     actions = np.array(['COFFEE', 'DRINK', 'DRINK MILK', 'DRINK WATER',
@@ -179,14 +182,23 @@ def generate():
                     sequence_length = 45
                     threshold = 0.7
                     no_keypoints = 258
+                    
                 elif category == 'emotions':
                     actions = np.array(['ANGRY', 'ANNOY', 'HAPPY', 'HUNGRY', 'LOVE', 'SAD', 
                                         'SCARED','SHOCK', 'SORRY', 'SURPRISE', 'WORRY'])
-            
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','EMOTIONS','kent','lossalphamodel45.h5')
+                    sequence_length = 30
+                    threshold = 0.6
+                    no_keypoints = 258
+                    
 
                 elif category == 'family':
                     actions = np.array(['BABY', 'BROTHER', 'DAUGHTER', 'FATHER', 'GRANDMA',
                                         'GRANDPA','MOTHER', 'RELATIVE', 'SISTER', 'SON'])
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','FAMILY','kent','lossalphamodel45.h5')
+                    sequence_length = 30
+                    threshold = 0.7
+                    no_keypoints = 258
 
                 elif category == 'food':
                     actions = np.array(['BREAD', 'BREAKFAST', 'BUTTER', 'CEREAL', 'CHICKEN',
@@ -225,6 +237,7 @@ def generate():
                     sequence_length = 20
                     threshold = 0.7
                     no_keypoints = 63
+                    
 
                 elif category == 'places':
                     actions = np.array(['BAKERY', 'BARBERSHOP', 'BRIDGE', 'CAFE',
