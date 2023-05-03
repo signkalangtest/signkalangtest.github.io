@@ -108,7 +108,7 @@ def generate():
     model.add(Dense(32, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
 
-    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lossalphamodel45.h5')
+    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lastepoch45.h5')
     
     model.load_weights(model_path)
      
@@ -133,16 +133,17 @@ def generate():
                                         'HANDSOME', 'HARD', 'HUNGRY', 'SHORT', 'SMALL',
                                         'SOFT', 'STRONG', 'TALL', 'TIRED', 'UGLY', 'WEAK'])
 
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ADJECTIVES','gru','lossalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ADJECTIVES','gru','accalphamodel45.h5')
                     sequence_length = 45
                     threshold = 0.7
                     no_keypoints = 258
+                    
                     
                 elif category == 'alphabet':
                     actions = np.array(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
                                         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
                                         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lossalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lastepoch45.h5')
                     sequence_length = 20
                     threshold = 0.5
                     no_keypoints = 63
