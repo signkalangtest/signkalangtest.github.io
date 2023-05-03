@@ -301,9 +301,9 @@ def generate():
                                         'MAKE', 'PAY', 'PRAY', 'READ', 'REST', 'RUN',
                                         'SEE', 'SING', 'SIT', 'STAND', 'STUDY',
                                         'WALK', 'WANT', 'WRITE'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','VERB','kent','lossalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','VERB','kent','accalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.4
                     no_keypoints = 258
 
 
