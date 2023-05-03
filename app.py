@@ -70,6 +70,8 @@ def extract_keypoints(results,category):
     key63 = ['alphabet','numbers']
     if category in key63:
         return np.concatenate([rh])
+    elif category=="colors":
+        return np.concatenate([lh, rh])
     else:
         return np.concatenate([lh, rh, pose])
 
@@ -119,9 +121,9 @@ def generate():
             
             category = app.config['category']
             
-            lstmcategory = ['fruits','vegtables']
+            lstmcategory = ['fruits','vegetables']
             grucategory = ['places','shapes','adjectives','drinks','weather','house']
-            customgrucategory = ['school','pronouns','verbs','foods','clothes','alphabet','body' ,'numbers','emotions','family']
+            customgrucategory = ['school','pronouns','verbs','foods','clothes','alphabet','body' ,'numbers','emotions','family', 'colors']
 
 
             
@@ -133,7 +135,7 @@ def generate():
                                         'HANDSOME', 'HARD', 'HUNGRY', 'SHORT', 'SMALL',
                                         'SOFT', 'STRONG', 'TALL', 'TIRED', 'UGLY', 'WEAK'])
 
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ADJECTIVES','gru','accalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ADJECTIVES','gru','lossalphamodel45.h5')
                     sequence_length = 45
                     threshold = 0.7
                     no_keypoints = 258
@@ -172,10 +174,10 @@ def generate():
                     actions = np.array(['BLACK', 'BLUE', 'GRAY', 'GREEN', 'ORANGE', 'PINK', 
                                         'PURPLE','RED', 'VIOLET', 'WHITE', 'YELLOW'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','COLORS','kent','accalphamodel45.h5')
-                    sequence_length = 45
+                    sequence_length = 20
                     threshold = 0.7
-                    no_keypoints = 258
-
+                    no_keypoints = 126
+                    
                 elif category == 'drinks':
                     actions = np.array(['COFFEE', 'DRINK', 'DRINK MILK', 'DRINK WATER',
                                         'HOT CHOCOLATE', 'JUICE', 'SODA', 'TEA'])
@@ -201,7 +203,8 @@ def generate():
                     threshold = 0.7
                     no_keypoints = 258
 
-                elif category == 'food':
+
+                elif category == 'foods':
                     actions = np.array(['BREAD', 'BREAKFAST', 'BUTTER', 'CEREAL', 'CHICKEN',
                                         'DINNER', 'EGG', 'FOOD', 'HAM', 'HONEY', 'HOTDOG',
                                         'LONGGANISA', 'LUNCH', 'MAYO', 'PANCAKE', 'RICE', 'TOCINO'])
@@ -209,6 +212,7 @@ def generate():
                     sequence_length = 45
                     threshold = 0.7
                     no_keypoints = 258
+                    
                     
                 elif category == 'fruits':
                     actions = np.array(['APPLE', 'BANANA', 'COCONUT', 'MANGO',
@@ -245,7 +249,7 @@ def generate():
                                         'CHURCH', 'CLINIC', 'COMPUTER SHOP', 'CONVENIENCE STORE',
                                         'FIRE STATION', 'HAIR SALON', 'HOSPITAL', 'MALL', 
                                         'MARKET', 'NEIGHBORHOOD', 'PHARMACY','PULIS STATION', 'SCHOOL'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','PLACES','gru','lastepochalpha.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','PLACES','gru','accalphamodel45.h5')
                     sequence_length = 45
                     threshold = 0.7
                     no_keypoints = 258
@@ -260,6 +264,7 @@ def generate():
                     threshold = 0.7
                     no_keypoints = 258
 
+
                 elif category == 'school':
                     actions = np.array(['BACKPACK', 'BAG', 'BOOK', 'ERASER', 'EYEGLASS', 
                                         'PAPER', 'PENCIL', 'RULER', 'STAPLER'])
@@ -267,6 +272,7 @@ def generate():
                     sequence_length = 45
                     threshold = 0.7
                     no_keypoints = 258
+
 
                 elif category == 'shapes':
                     actions = np.array(['CIRCLE', 'DIAMOND', 'HEART', 'OVAL', 
@@ -276,16 +282,17 @@ def generate():
                     threshold = 0.7
                     no_keypoints = 258
 
+
                 elif category == 'vegetables':
                     actions = np.array(['AMPALAYA', 'BEANS', 'CABBAGE', 'ONION', 
                                         'SQUASH', 'TOMATO'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','VEGGIES','normal','accalphamodel45.h5')
-                    sequence_length = 30
+                    sequence_length = 45
                     threshold = 0.7
                     no_keypoints = 258
 
 
-                elif category == 'verb':
+                elif category == 'verbs':
                     actions = np.array(['ASK', 'BATH', 'BREAK', 'BRING', 'BUY',
                                         'CATCH', 'CLEAN', 'COME', 'COOK', 'CRY',
                                         'DANCE', 'DRAW', 'DRINK', 'EAT', 'FALL', 
@@ -298,6 +305,8 @@ def generate():
                     sequence_length = 45
                     threshold = 0.7
                     no_keypoints = 258
+
+
 
                 elif category == 'weather':
                     actions = np.array(['CLOUD', 'HOT', 'LIGHTING', 'RAIN', 'RAINBOW', 
