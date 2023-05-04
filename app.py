@@ -145,7 +145,7 @@ def generate():
                     actions = np.array(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
                                         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
                                         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lastepoch45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lossalphamodel45.h5')
                     sequence_length = 20
                     threshold = 0.5
                     no_keypoints = 63
@@ -221,6 +221,7 @@ def generate():
                     sequence_length = 30
                     threshold = 0.7
                     no_keypoints = 258
+                    
                     
                 elif category == 'house':
                     actions = np.array(['BED', 'BRUSHING TEETH', 'CALENDAR', 'CEILING',
