@@ -9,7 +9,11 @@
 <body>
     <div class="container">
         <div class="main-section">
+            <div class = "currentcategory" id="currentcategory">
+                YOU ARE NOW SIGNING LETTERS FROM THE FSL ALPHABET
+            </div>
             <div class="text-trans">
+                
                 <div class="translatedword" id="translatedword">
                     Translated Word
                 </div>
@@ -99,12 +103,16 @@
 
 <script async defer>
     // JavaScript code to handle button clicks
+    var currentcategory = document.getElementById("currentcategory");
     document.getElementById("adjbtn").addEventListener("click", function() {
         sendRequest("adjectives");
+        
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING ADJECTIVES"
     });
 
     document.getElementById("alphabtn").addEventListener("click", function() {
         sendRequest("alphabet");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING ALPHABET"
     });
 
     document.getElementById("bodbtn").addEventListener("click", function() {

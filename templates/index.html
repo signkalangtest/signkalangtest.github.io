@@ -13,7 +13,7 @@
     <div class="home">
         <div class="navbar">
             <div class="bg-image">
-                <img id="btn-logo" src = "{{ url_for('static', filename='images/logoll.png') }}" class = "logovid">
+                <img id="btn-logo" src = "{{ url_for('static', filename='images/logo_btng.png') }}" class = "logovid">
                 <img id="btn-menu" src = "{{ url_for('static', filename='images/burgerbb.png') }}">
                 
                 <div class="video-container">
@@ -54,18 +54,30 @@
 
         <div class="content">
             <div class="maincontainer">
-                <div class="sandtdiv">
-                    <a href="{{ url_for('snt') }}">
-                        <img src="{{ url_for('static', filename='images/sandt.png') }}">
-                    </a>    
+                <div class="feats">
+                    <div class="sandtdiv">
+                        <a href="{{ url_for('snt') }}">
+                            <img src="{{ url_for('static', filename='images/sandt.png') }}">
+                            <span id = "st-tool1"> Click me! I can TRANSLATE FSL into text🤓</span>
+                        </a>    
+                    </div>
+                
+                    <div class="tasdiv">
+                        <a href="{{ url_for('tas') }}">
+                            <img src="{{ url_for('static', filename='images/tas.png') }}" >
+                            <span id = "st-tool2"> Click me! I have STORIES for you!📚</span>
+                        </a>  
+                    </div>
+    
+                    <div class="fsdiv">
+                        <a href = "#">
+                            <img src = "{{url_for('static', filename = 'images/fs.png' )}}">
+                            <span id = "st-tool3"> Let's FINGER SPELL words in FSL🤘🏻</span>
+                        </a>
+                    </div>
+
                 </div>
-            
-                <div class="tasdiv">
-                    <a href="{{ url_for('tas') }}">
-                        <img src="{{ url_for('static', filename='images/tas.png') }}" >
-                    </a>  
-                </div>
-            
+                
                 <div class="bulletinboarddiv">
                     <div class="boardcontent">
                         <b>TODAY IS</b>
@@ -206,6 +218,35 @@
         closeMenu.addEventListener('click',()=>{
             menu.classList.remove('show');
         });
+
+        var spanText1 = document.getElementById('st-tool1');
+        var spanText2 = document.getElementById('st-tool2');
+        var spanText3 = document.getElementById('st-tool3');
+
+        window.onmousemove = function(e){
+            var x1 = e.clientX, y1 = e.clientY;
+            var x2 = e.clientX, y2 = e.clientY;
+            var x3 = e.clientX, y3 = e.clientY;
+
+            spanText1.style.top = (y1+15) + 'px';
+            spanText1.style.left = (x1+15) + 'px';
+            spanText2.style.top = (y2+15) + 'px';
+            spanText2.style.left = (x2+15) + 'px';
+            spanText3.style.top = (y3+15) + 'px';
+            spanText3.style.left = (x3+15) + 'px';
+        }
+        
+        // window.onmousemove = function(e){
+        //     var x2 = e.clientX, y2 = e.clientY;
+        //     spanText2.style.top = (y2+15) + 'px';
+        //     spanText2.style.left = (x2+15) + 'px';
+        // }
+        
+        // window.onmousemove = function(e){
+        //     var x3 = e.clientX, y3 = e.clientY;
+        //     spanText3.style.top = (y3+15) + 'px';
+        //     spanText3.style.left = (x3+15) + 'px';
+        // }
 </script>
 </body>
 

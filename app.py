@@ -110,13 +110,13 @@ def generate():
     model.add(Dense(32, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
 
-    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lastepoch45.h5')
+    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lossalphamodel45.h5')
     
     model.load_weights(model_path)
      
     cap = cv2.VideoCapture(1)
     
-    with mp_holistic.Holistic(min_detection_confidence=0.1, min_tracking_confidence=0.1) as holistic:
+    with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while True:
             
             category = app.config['category']
@@ -198,7 +198,7 @@ def generate():
                 elif category == 'family':
                     actions = np.array(['BABY', 'BROTHER', 'DAUGHTER', 'FATHER', 'GRANDMA',
                                         'GRANDPA','MOTHER', 'RELATIVE', 'SISTER', 'SON'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','FAMILY','kent','lossalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','FAMILY','kent','accalphamodel45.h5')
                     sequence_length = 30
                     threshold = 0.7
                     no_keypoints = 258
