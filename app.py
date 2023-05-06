@@ -68,9 +68,10 @@ def extract_keypoints(results,category):
     rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
     
     key63 = ['alphabet','numbers']
+    key126 = ['colors','family']
     if category in key63:
         return np.concatenate([rh])
-    elif category=="colors":
+    elif category in key126:
         return np.concatenate([lh, rh])
     else:
         return np.concatenate([lh, rh, pose])
@@ -92,12 +93,12 @@ def generate():
     sentence = []
     predictions = []
     sequence_length = 20
-    threshold = 0.7
+    threshold = 0.5
     temp = 'alphabet'
     actions = np.array(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
                                         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
                                         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-    
+    no_keypoints = 63
     model = Sequential()
     model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(sequence_length,63)))
     model.add(Dropout(0.1))
@@ -110,13 +111,13 @@ def generate():
     model.add(Dense(32, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
 
-    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lastepoch45.h5')
+    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','accalphamodel45.h5')
     
     model.load_weights(model_path)
      
     cap = cv2.VideoCapture(1)
     
-    with mp_holistic.Holistic(min_detection_confidence=0.1, min_tracking_confidence=0.1) as holistic:
+    with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while True:
             
             category = app.config['category']
@@ -145,7 +146,7 @@ def generate():
                     actions = np.array(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
                                         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
                                         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','lossalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','accalphamodel45.h5')
                     sequence_length = 20
                     threshold = 0.5
                     no_keypoints = 63
@@ -198,10 +199,10 @@ def generate():
                 elif category == 'family':
                     actions = np.array(['BABY', 'BROTHER', 'DAUGHTER', 'FATHER', 'GRANDMA',
                                         'GRANDPA','MOTHER', 'RELATIVE', 'SISTER', 'SON'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','FAMILY','kent','lossalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','FAMILY','kent','lastepoch45.h5')
                     sequence_length = 30
                     threshold = 0.7
-                    no_keypoints = 258
+                    no_keypoints = 126
 
 
                 elif category == 'foods':
@@ -357,7 +358,7 @@ def generate():
                 sequence = [] 
     
             ret, frame = cap.read()
-            
+            key63 = ['alphabet','numbers']
             if not ret:
                 break
             else:
@@ -371,7 +372,15 @@ def generate():
                 keypoints = extract_keypoints(results,category)
                 sequence.append(keypoints)
                 sequence = sequence[-sequence_length:]
-                if len(sequence) == sequence_length :
+
+
+                if category in key63 and keypoints[62] == 0:
+                    sentence = " "
+                        
+                elif no_keypoints >= 120 and keypoints[63] == 0:
+                    sentence = " "
+                    
+                elif len(sequence) == sequence_length :
                     res = model.predict(np.expand_dims(sequence, axis=0))[0]
                     
                     predictions.append(np.argmax(res))
@@ -385,8 +394,9 @@ def generate():
                                     sentence = actions[np.argmax(res)]
                             else:
                                 sentence = actions[np.argmax(res)] 
-                    #print(actions[np.argmax(res)])
-                    app.config['translatedword'] = actions[np.argmax(res)] 
+
+                    
+                app.config['translatedword'] = sentence
                     
                 # Convert the frame to JPEG format
                 ret, buffer = cv2.imencode('.jpg', frame)
@@ -400,7 +410,7 @@ def generate():
 
 def showvideo():
       
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -459,6 +469,10 @@ def snt():
 @app.route('/tas')
 def tas():
     return render_template('tas.html')
+
+@app.route('/fs')
+def fs():
+    return render_template('fs.html')
 
 
 

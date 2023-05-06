@@ -1,9 +1,10 @@
 *{
+  /* border: solid 1px red; */
   font-family: "Comic Sans MS", "Comic Sans";
 }
 
 body {
-  background-image: url("assets\bgmain.png");
+  background-image: url("../images/bgpage.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -25,7 +26,7 @@ body {
   border-radius: 10px;
   align-items: center;
   align-content: center;
-  margin-left: 1%;
+  margin-left: 3%;
   
 }
 
@@ -33,13 +34,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 82%;
 
 }
 
 .translatedword{
   font-size: 8em;
   text-align: center;
+  /* margin-top: 15%; */
 }
 
 .button-slider {
@@ -53,11 +55,10 @@ body {
   align-content: center;
   justify-content: center;
   height: 23%;
-  margin-top: -2%;
+  margin-top: -3%;
 }
 
 .button-container {
-  /* display: flex; */
   gap: 1rem;
   scroll-snap-type: x mandatory; 
   height: 100%;
@@ -98,31 +99,67 @@ body {
 .side-section {
   display: block;
   width: 30%; /* Set the width of side section to 30% of container */
-  height: 70vh;
+  height: 80vh;
    /* Set light green background color */
-  margin-left: 2%;
-  border-radius: 10px;
+  margin-left: 1%;
+  /* border-radius: 10px; */
+}
+
+.currentcategory{
+  /* display:block; */ 
+  width:100%;
+  font-size: 2em;
+  font-weight:400;
+  text-align: center;
+  color: #fff;
+  background: lightblue;
+  padding: 10px 10px; 
+  /* border-radius:10px; */
+  height:20%;
+  z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .camera-div {
-  width: 94%;
+  width: 90%;
+  height: 90%;
   margin-left: 2%;
-  border-radius:10px;
-  background-color: rgb(144, 158, 238);
-  height: 100%;
+  /* border-radius:10px; */
+  /* background-color: rgb(144, 158, 238); */
+  overflow: hidden;
+  padding-bottom: -5%;
+  
 }
 
-.camera-div img{
-  margin-top: 20%;
+/* .camera-div img{
+  margin-top: 40%;
   width: 100%;
+  height:auto;
+  clip-path: inset(0 0 0 0);
+  transform: scale(2);
+
+} */
+.vid-cont img{
+  margin-top:35%;
+  height:50%;
+  width: 100%;
+  clip-path: inset(0 0 0 0);
+  transform: scale(2);
+  z-index: 998;
 }
+
+
 
 .back-to-home {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  height:25%;
+  width:70%;
+  height:15%;
   background-color:#452887;
   color: #fff;
   margin-left: 15%;
@@ -132,6 +169,7 @@ body {
 }
 
 a{
+  font-size: 1.5em;
   text-decoration: none;
   color: white;
 }

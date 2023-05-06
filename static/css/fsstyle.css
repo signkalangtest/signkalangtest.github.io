@@ -1,0 +1,77 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+*{
+    font-family: "Comic Sans MS", "Comic Sans";
+    border: 1px solid red;
+  }
+  
+  body {
+    background-image: url("../images/bgmain.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%; /* Set container height to the full height of the viewport */
+    margin-top: 2%;
+  }
+
+  .main-section{
+    width: 60%;
+  }
+
+  .side-section{
+    display: block;
+    width: 30%; /* Set the width of side section to 30% of container */
+    height: 70vh;
+    /* Set light green background color */
+    border-radius: 10px;
+  }
+
+  .instruction-container, .fingerspell-container, .button-slider{
+    width: 100%;
+
+  }
+  
+  .camera-div {
+    width: 94%;
+    margin-left: 2%;
+    border-radius:10px;
+    background-color: rgb(144, 158, 238);
+    height: 100%;
+  }
+  
+  .camera-div img{
+    margin-top: 20%;
+    width: 100%;
+  }
+  
+  .back-to-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height:25%;
+    background-color:#452887;
+    color: #fff;
+    margin-left: 15%;
+    margin-top: 5%;
+    border-radius:10px;
+    font-size: 30px;
+  }
+  
+  a{
+    text-decoration: none;
+    color: white;
+  }
+  
+  a:hover{
+    text-decoration: none;
+  }
+  

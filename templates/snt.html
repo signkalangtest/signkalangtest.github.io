@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <html lang="en">
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/sntstyle.css') }}">
@@ -9,7 +10,9 @@
 <body>
     <div class="container">
         <div class="main-section">
+            
             <div class="text-trans">
+                
                 <div class="translatedword" id="translatedword">
                     Translated Word
                 </div>
@@ -85,8 +88,15 @@
         </div>
 
         <div class="side-section">
+            
             <div class="camera-div">
-                <img src="{{ url_for('video_feed') }}">
+                <div class = "currentcategory" id="currentcategory">
+                    YOU ARE NOW SIGNING LETTERS FROM THE FSL ALPHABET
+                </div>
+                
+                <div class="vid-cont">
+                    <img src="{{ url_for('video_feed') }}">
+                </div>
             </div>
 
             <div class="back-to-home">
@@ -99,80 +109,100 @@
 
 <script async defer>
     // JavaScript code to handle button clicks
+    var currentcategory = document.getElementById("currentcategory");
     document.getElementById("adjbtn").addEventListener("click", function() {
         sendRequest("adjectives");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING ADJECTIVES"
     });
 
     document.getElementById("alphabtn").addEventListener("click", function() {
         sendRequest("alphabet");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING LETTERS FROM THE FSL ALPHABET"
     });
 
     document.getElementById("bodbtn").addEventListener("click", function() {
         sendRequest("body");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING PARTS OF THE BODY"
     });
 
     document.getElementById("clobtn").addEventListener("click", function() {
         sendRequest("clothes");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING CLOTHES"
     });
 
     document.getElementById("colbtn").addEventListener("click", function() {
         sendRequest("colors");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING COLORS"
     });
 
     document.getElementById("dribtn").addEventListener("click", function() {
         sendRequest("drinks");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING DRINKS"
     });
 
     document.getElementById("emobtn").addEventListener("click", function() {
         sendRequest("emotions");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING EMOTIONS"
     });
 
     document.getElementById("fambtn").addEventListener("click", function() {
         sendRequest("family");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING FAMILY RELATIONSHIPS"
     });
 
     document.getElementById("foobtn").addEventListener("click", function() {
         sendRequest("foods");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING FOODS"
     });
 
     document.getElementById("fruibtn").addEventListener("click", function() {
         sendRequest("fruits");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING FRUITS"
     });
 
     document.getElementById("houbtn").addEventListener("click", function() {
         sendRequest("house");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING HOUSE-RELATED WORDS"
     });
 
     document.getElementById("numbtn").addEventListener("click", function() {
         sendRequest("numbers");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING NUMBERS"
     });
 
     document.getElementById("objbtn").addEventListener("click", function() {
         sendRequest("school");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING SCHOOL OBJECTS"
     });
 
     document.getElementById("placebtn").addEventListener("click", function() {
         sendRequest("places");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING PLACES"
     });
 
     document.getElementById("probtn").addEventListener("click", function() {
         sendRequest("pronouns");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING PRONOUNS"
     });
 
     document.getElementById("shapesbtn").addEventListener("click", function() {
         sendRequest("shapes");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING SHAPES"
     });
 
     document.getElementById("vegbtn").addEventListener("click", function() {
         sendRequest("vegetables");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING VEGETABLES"
     });
 
     document.getElementById("verbbtn").addEventListener("click", function() {
         sendRequest("verbs");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING VERBS"
     });
 
     document.getElementById("weabtn").addEventListener("click", function() {
         sendRequest("weather");
+        currentcategory.innerHTML = "YOU ARE NOW SIGNING WEATHER"
     });
 
 

@@ -3,7 +3,7 @@ html, body {
   padding: 0px;
 }
 *{
-  /* border: 1px solid red;   */
+  /* border: 1px solid red; */
   font-family: "Comic Sans MS", "Comic Sans"
 }
 
@@ -35,22 +35,106 @@ body{
   margin-left: 8%;
 }
 
+.feats{
+  width: 50%;
+  display: flex;
+  flex-wrap: flex;
+  flex-flow: row wrap;
+  margin-left: -1%;
+  margin-right: 1%;
+  margin-top: 8%;
+}
+
+.feats div:nth-child(3){
+  flex: 1 100%;
+}
+
 .sandtdiv{
-  width: 23%;
-  margin-right: 3%;
+  width: 50%;
+  /* margin-right: 3%; */
+}
+
+#st-tool1{
+  font-family: "Century Gothic", sans-serif;
+  position: fixed;
+  display:block;
+  opacity:0;
+  visibility: hidden;
+  background: #52F6B9;
+  color: #000;
+  font-size: 2em;
+  box-shadow: 0 8px 10px rgba(0,0,0,.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  z-index:999;
+}
+#st-tool2{
+  font-family: "Century Gothic", sans-serif;
+  position: fixed;
+  display:block;
+  opacity:0;
+  visibility: hidden;
+  background:#F2BD51;
+  color: #000;
+  font-size: 2em;
+  box-shadow: 0 8px 10px rgba(0,0,0,.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  z-index:999;
+}
+#st-tool3{
+  font-family: "Century Gothic", sans-serif;
+  position: fixed;
+  display:block;
+  opacity:0;
+  visibility: hidden;
+  background: #F59EB8;
+  color: #000;
+  font-size: 2em;
+  box-shadow: 0 8px 10px rgba(0,0,0,.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  z-index:999;
+}
+
+.sandtdiv:hover #st-tool1{
+  opacity: 1;
+  visibility: visible;
+}
+
+.tasdiv:hover #st-tool2{
+  opacity: 1;
+  visibility: visible;
+}
+
+.fsdiv:hover #st-tool3{
+  opacity: 1;
+  visibility: visible;
 }
 
 .tasdiv{
-  width: 23%;
-  margin-right: 5%;
+  width: 50%;
+  /* margin-right: 5%; */
 }
+
+.fsdiv{
+  width:50%;
+}
+
 .sandtdiv img{
-  width: 100%;
-  
+  width: 78%;
+  margin-right:-12%;
+  background-color: transparent;
 }
 
 .tasdiv img{
-  width: 100%;
+  width: 78%;
+  margin-left: -12%;
+  background-color: transparent;
+}
+
+.fsdiv img{
+  width:88%;
   background-color: transparent;
 }
 
@@ -64,6 +148,7 @@ body{
   background: #9F6FB4;
   border-radius: 30px;
   width: 38%;
+  margin-right: 3%;
 }
 
 .boardcontent{
@@ -167,6 +252,10 @@ a:hover{
 	right: 0; /* move menu to show on screen */
 }
 
+.navbar{
+  margin-bottom: 8%;
+}
+
 img#btn-menu {
   width: 12%;
   overflow: hidden;
@@ -179,11 +268,11 @@ img#btn-menu {
 }
 
 img#btn-logo {
-  width: 25%;
+  width: 38%;
   overflow: hidden;
   float:left;
   margin-top: 1%;
-  margin-left: -2%;
+  margin-left: 10%;
 	border: none;
 	cursor: pointer;
   z-index: 999;
