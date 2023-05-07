@@ -243,16 +243,16 @@
       <div class="rightsec">
         <div class="carousel-buttons">
           <span id = "st-tool7"> CLICK on a story🤓 </span>
-            <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel1">
+            <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel1" id="TMIMbtn">
                 <img src = "{{url_for('static', filename='images/story1.png')}}" class = "stories">
                 
             </button>
-            <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel2">
+            <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel2" id="AAKbtn">
                 <img src = "{{url_for('static', filename='images/story2.png')}}" class = "stories">
                 
             </button>
-            <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel3">
-                <img src = "{{url_for('static', filename='images/story3.png')}}" class = "stories">
+            <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel3" >
+                <img src = "{{url_for('static', filename='images/story3.png')}}" class = "stories" id="WWWTbtn">
                 
             </button>
         </div>
@@ -483,7 +483,28 @@
         },  500); 
         
 
-        
+      document.getElementById("AAKbtn").addEventListener("click", function() {
+        sendRequest("AAK");
+      });
+      document.getElementById("TMIMbtn").addEventListener("click", function() {
+        sendRequest("AAK");
+      });
+      document.getElementById("WWWTbtn").addEventListener("click", function() {
+        sendRequest("WWWT");
+      });
+  
+  
+      // Function to send HTTP request to Flask server
+      function sendRequest(buttonInfo) {
+          var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                      //console.log("Response from Flask server: " + this.responseText);
+                  }
+          };
+          xhttp.open("GET", "/story-clicked?info=" + buttonInfo, true);
+          xhttp.send();
+      }
 
 
          

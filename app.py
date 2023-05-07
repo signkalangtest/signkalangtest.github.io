@@ -430,10 +430,11 @@ def getanswer():
     predictions = []
     sequence_length = 30
     threshold = 0.2
-    temp = 'alphabet'
+    
     actions = np.array(['BREAKFAST', 'EAT', 'SCHOOL', 'YOU'])
     no_keypoints = 258
-    
+    story = "TMIM"
+    temp = 'TMIM'
     model = Sequential()
     model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(sequence_length,no_keypoints)))
     model.add(Dropout(0.1))
@@ -446,13 +447,69 @@ def getanswer():
     model.add(Dense(32, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
 
-    model_path = os.path.join(os.path.dirname(__file__),'static','models','STORY1','kent','accalphamodel45.h5')
+    model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','accalphamodel45.h5')
     
     model.load_weights(model_path)
      
     cap = cv2.VideoCapture(0)
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while True:
+            story = app.config['story']
+            if temp!=story:
+                if story == "TMIM":
+                    actions = np.array(['BREAKFAST', 'EAT', 'SCHOOL', 'YOU'])
+                    del model
+                    model = Sequential()
+                    model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(30,258)))
+                    model.add(Dropout(0.1))
+                    model.add(Dense(64, activation='relu'))
+                    model.add(GRU(64, return_sequences=True, activation='relu'))
+                    model.add(Dropout(0.1))
+                    model.add(Dense(64, activation='relu'))
+                    model.add(GRU(32, return_sequences=False, activation='relu'))
+                    model.add(BatchNormalization())
+                    model.add(Dense(32, activation='relu'))
+                    model.add(Dense(actions.shape[0], activation='softmax'))
+
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','accalphamodel45.h5')
+                elif story == "AAK":
+                    actions = np.array(['BEAUTIFUL', 'BODIES', 'EAT', 'EYES', 'FEET', 'HANDS', 'HEART','MOUTH', 'NOSE', 'SEE', 'STRONG'])
+
+                    del model
+                    #gru model
+
+                    model = Sequential()
+                    model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(30,258)))
+                    model.add(Dropout(0.1))
+                    model.add(Dense(64, activation='relu'))
+                    model.add(GRU(64, return_sequences=True, activation='relu'))
+                    model.add(Dropout(0.1))
+                    model.add(Dense(64, activation='relu'))
+                    model.add(GRU(32, return_sequences=False, activation='relu'))
+                    model.add(BatchNormalization())
+                    model.add(Dense(32, activation='relu'))
+                    model.add(Dense(actions.shape[0], activation='softmax'))
+
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','lossalphamodel45.h5')
+                    
+                elif story == "WWWT":
+                    actions = np.array(['BEAUTIFUL', 'FATHER', 'HANDSOME', 'HAPPY', 'HAT', 'MOTHER','PINK', 'SISTER'])
+
+                    del model
+                    #gru model
+
+                    model = Sequential()
+                    model.add(GRU(64, return_sequences=True, activation='relu',input_shape=(30,258)))
+                    model.add(GRU(128, return_sequences=True, activation='relu'))
+                    model.add(GRU(64, return_sequences=False, activation='relu'))
+                    model.add(Dense(64, activation='relu'))
+                    model.add(Dense(32, activation='relu'))
+                    model.add(Dense(actions.shape[0], activation='softmax'))
+
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','WWWT','gru','accalphamodel45.h5')
+                
+                temp = story
+            
             ret, frame = cap.read()
             if not ret:
                 break
@@ -502,6 +559,7 @@ def getanswer():
 app = Flask(__name__)
 app.config['translatedword'] = 'Translated Word'
 app.config['category'] = 'alphabet'
+app.config['story'] = 'TMIM'
 
 @app.route('/')
 def home(): 
@@ -546,6 +604,14 @@ def handle_button_click():
     button_info = request.args.get('info')
     # Do something with the button_info
     app.config['category'] = button_info
+    return "Received button click: " + button_info
+
+
+@app.route('/story-clicked')
+def handle_story_click():
+    button_info = request.args.get('info')
+    # Do something with the button_info
+    app.config['story'] = button_info
     return "Received button click: " + button_info
 
 
