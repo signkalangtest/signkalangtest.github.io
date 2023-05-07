@@ -26,22 +26,25 @@ body{
   align-content: center;
   display: block;
   margin-top: 2%;
-  margin-left: 2%;
+  margin-left: 5%;
 }
 
 .mainsection{
-  margin-top: 9%;
+  margin-top: 3%;
+  width:100%;
+  
 }
 
 .carousel-inner{
-  width: 100%;
+  width: 120%;
   background-color: none;
   border-radius:20px;
+  margin-left:-9%;
 }
 
 .rightsec{
   display: block;
-  margin-left: 5%;
+  margin-left: 2%;
   width: 30%;
   border-radius:20px;
   height: 92vh;
@@ -70,7 +73,7 @@ body{
 .scamdiv{
   width: 94%;
   margin-left: 3%;
-  border-radius:10px;
+  border-radius:5px;
   background-color: none;
   height: 60%;
   margin-top: 4%;
@@ -79,20 +82,21 @@ body{
 .scamdiv img{
   margin-top: 10%;
   width: 100%;
-  border-radius: 20%;
+  border-radius: 5%;
 }
 
 .sback{
-  width: 85%;
+  width: 72%;
   font-size: 3em;
   border-radius:10px;
   background-color:#452887;
   margin-top:5%;
-  margin-left: 8%;
+  /* margin-left: 8%; */
+  margin: 0 auto;
   justify-content: center;
   text-align: center;
   height:10%;
-  padding-top:1%;
+  padding-top:2%;
 }
 
 .sback a{
@@ -104,23 +108,25 @@ body{
 .carousel-control-next {
 background-color: #000;
 color: #fff;
-padding: 10px 10px;
+/* padding: 50% 50%; */
 cursor: pointer;
 position:absolute;
 top:45%;
 bottom:45%;
 width:auto;
-padding:16px;
-opacity:0.2;
+padding:2%;
+opacity:0.75;
 user-select: none;
 }
 
 .carousel-control-prev{
   border-radius: 0 50% 50% 0;
+  margin-left: -8%;
 }
 
 .carousel-control-next{
   border-radius: 50% 0 0 50%;
+  margin-right: -11%;
 }
 
 .carousel-control-prev:hover,

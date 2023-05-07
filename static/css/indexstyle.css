@@ -82,7 +82,21 @@ body{
   border-radius: 15px;
   z-index:999;
 }
-#st-tool3{
+/* #st-tool3{
+  font-family: "Century Gothic", sans-serif;
+  position: fixed;
+  display:block;
+  opacity:0;
+  visibility: hidden;
+  background: #F59EB8;
+  color: #000;
+  font-size: 2em;
+  box-shadow: 0 8px 10px rgba(0,0,0,.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  z-index:999;
+} */
+#st-tool5{
   font-family: "Century Gothic", sans-serif;
   position: fixed;
   display:block;
@@ -97,6 +111,11 @@ body{
   z-index:999;
 }
 
+.sidebar:hover #st-tool5{
+  opacity: 1;
+  visibility: visible;
+}
+
 .sandtdiv:hover #st-tool1{
   opacity: 1;
   visibility: visible;
@@ -107,19 +126,19 @@ body{
   visibility: visible;
 }
 
-.fsdiv:hover #st-tool3{
+/* .fsdiv:hover #st-tool3{ 
   opacity: 1;
   visibility: visible;
-}
+} */
 
 .tasdiv{
   width: 50%;
   /* margin-right: 5%; */
 }
 
-.fsdiv{
+/* .fsdiv{
   width:50%;
-}
+} */
 
 .sandtdiv img{
   width: 78%;
@@ -133,10 +152,10 @@ body{
   background-color: transparent;
 }
 
-.fsdiv img{
+/* .fsdiv img{
   width:88%;
   background-color: transparent;
-}
+} */
 
 
 .maincontainer a{

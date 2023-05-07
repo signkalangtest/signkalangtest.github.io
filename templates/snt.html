@@ -96,11 +96,27 @@
                 
                 <div class="vid-cont">
                     <img src="{{ url_for('video_feed') }}">
+                    <span id = "st-tool4"> Make sure you're in the MIDDLE!</span>
                 </div>
+                
             </div>
 
-            <div class="back-to-home">
-                <a href="{{ url_for('home')}}">BACK TO HOME</a>
+            <div class="snt-tool">
+                <h2>❔HOW TO USE❔</h2>
+                <div class="tool-content">
+                    <h3>DO THESE...</h3>
+                    <p> Find a CLEAR background, <br>
+                        Find a WELL-LIT area,<br>
+                        When signing, put your hand in HEAD-LEVEL,<br>
+                        Put your HAND DOWN when signing a new word,<br>
+                        Remove your FACE MASK, HAT, and ARM ACCESORIES.
+                    </p>
+                    <h1>PICK from the categories then start signing!😃</h1>
+                </div>
+
+                <div class="back-to-home">
+                    <a href="{{ url_for('home')}}">BACK TO HOME</a>
+                </div>
             </div>
         </div>
 
@@ -206,9 +222,6 @@
     });
 
 
-
-
-
     // Function to send HTTP request to Flask server
     function sendRequest(buttonInfo) {
         var xhttp = new XMLHttpRequest();
@@ -229,6 +242,30 @@
             document.getElementById('translatedword').innerHTML = data;
         });
     }, 500); // check every 1 second
+
+    var spanText4 = document.getElementById('st-tool4');
+
+    window.onmousemove = function(e){
+        var x4 = e.clientX, y4 = e.clientY;
+
+        spanText4.style.top = (y4+15) + 'px';
+        spanText4.style.left = (x4-375) + 'px';
+    }
+
+    const categ = document.querySelectorAll('.all');
+
+    categ.forEach((buttonc) => {
+    buttonc.addEventListener('click', () => {
+        // Remove active class from all buttons
+        categ.forEach((btnc) => {
+        btnc.classList.remove('active');
+        });
+        
+        // Add active class to clicked button
+        buttonc.classList.add('active');
+    });
+    });
+
 
 </script>
 

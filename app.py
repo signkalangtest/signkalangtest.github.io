@@ -68,7 +68,7 @@ def extract_keypoints(results,category):
     rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
     
     key63 = ['alphabet','numbers']
-    key126 = ['colors','family']
+    key126 = ['colors','family','drinks','foods']
     if category in key63:
         return np.concatenate([rh])
     elif category in key126:
@@ -115,7 +115,7 @@ def generate():
     
     model.load_weights(model_path)
      
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while True:
@@ -123,8 +123,8 @@ def generate():
             category = app.config['category']
             
             lstmcategory = ['fruits','vegetables']
-            grucategory = ['places','shapes','adjectives','drinks','weather','house']
-            customgrucategory = ['school','pronouns','verbs','foods','clothes','alphabet','body' ,'numbers','emotions','family', 'colors']
+            grucategory = ['places','shapes','adjectives','weather','house']
+            customgrucategory = ['school','pronouns','verbs','drinks','foods','clothes','alphabet','body' ,'numbers','emotions','family', 'colors']
 
 
             
@@ -182,10 +182,10 @@ def generate():
                 elif category == 'drinks':
                     actions = np.array(['COFFEE', 'DRINK', 'DRINK MILK', 'DRINK WATER',
                                         'HOT CHOCOLATE', 'JUICE', 'SODA', 'TEA'])
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','DRINKS','gru','lossalphamodel45.h5')
-                    sequence_length = 45
-                    threshold = 0.7
-                    no_keypoints = 258
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','DRINKS','kent','lossalphamodel45.h5')
+                    sequence_length = 30
+                    threshold = 0.3
+                    no_keypoints = 126
                     
                 elif category == 'emotions':
                     actions = np.array(['ANGRY', 'ANNOY', 'HAPPY', 'HUNGRY', 'LOVE', 'SAD', 
@@ -210,9 +210,9 @@ def generate():
                                         'DINNER', 'EGG', 'FOOD', 'HAM', 'HONEY', 'HOTDOG',
                                         'LONGGANISA', 'LUNCH', 'MAYO', 'PANCAKE', 'RICE', 'TOCINO'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','FOODS','kent','accalphamodel45.h5')
-                    sequence_length = 45
-                    threshold = 0.7
-                    no_keypoints = 258
+                    sequence_length = 30
+                    threshold = 0.4
+                    no_keypoints = 126
                     
                     
                 elif category == 'fruits':
