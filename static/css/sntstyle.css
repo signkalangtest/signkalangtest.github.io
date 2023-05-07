@@ -31,17 +31,17 @@ body {
 }
 
 .text-trans{
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
-  height: 82%;
+  height: 80%;
 
 }
 
 .translatedword{
   font-size: 8em;
   text-align: center;
-  /* margin-top: 15%; */
+  margin-top: 3%;
 }
 
 .button-slider {
@@ -114,6 +114,7 @@ body {
 .currentcategory{
   /* display:block; */ 
   width:95%;
+  height:20%;
   font-size: 3vh;
   font-weight:800;
   text-align: center;
@@ -121,7 +122,6 @@ body {
   background: lightblue;
   padding: 10px 10px; 
   border-radius:10px;
-  height:20%;
   z-index: 999;
   margin: 0 auto;
   display: flex;
@@ -162,7 +162,6 @@ body {
 .snt-tool{
   margin-top: -25%;
   text-align: center;
-  
 }
 
 h1{
@@ -266,4 +265,16 @@ a:hover{
 .vid-cont:hover #st-tool4{
   opacity: 1;
   visibility: visible;
+}
+
+.pic-trans{
+  display: block;
+  margin: 0 auto;
+  width: 30%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.pic-trans img{
+  width: 100%;
 }

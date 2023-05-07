@@ -96,8 +96,9 @@ def generate():
     threshold = 0.5
     temp = 'alphabet'
     actions = np.array(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-                                        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-                                        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+                        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+                        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    
     no_keypoints = 63
     model = Sequential()
     model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(sequence_length,63)))
@@ -127,7 +128,6 @@ def generate():
             customgrucategory = ['school','pronouns','verbs','drinks','foods','clothes','alphabet','body' ,'numbers','emotions','family', 'colors']
 
 
-            
             
             if temp!=category:
                 temp = category
@@ -422,6 +422,80 @@ def showvideo():
             # Yield the frame in a Response object with the MIME type "multipart/x-mixed-replace; boundary=frame"
             yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+            
+            
+def getanswer():
+    sequence = []
+    sentence = []
+    predictions = []
+    sequence_length = 30
+    threshold = 0.2
+    temp = 'alphabet'
+    actions = np.array(['BREAKFAST', 'EAT', 'SCHOOL', 'YOU'])
+    no_keypoints = 258
+    
+    model = Sequential()
+    model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(sequence_length,no_keypoints)))
+    model.add(Dropout(0.1))
+    model.add(Dense(64, activation='relu'))
+    model.add(GRU(64, return_sequences=True, activation='relu'))
+    model.add(Dropout(0.1))
+    model.add(Dense(64, activation='relu'))
+    model.add(GRU(32, return_sequences=False, activation='relu'))
+    model.add(BatchNormalization())
+    model.add(Dense(32, activation='relu'))
+    model.add(Dense(actions.shape[0], activation='softmax'))
+
+    model_path = os.path.join(os.path.dirname(__file__),'static','models','STORY1','kent','accalphamodel45.h5')
+    
+    model.load_weights(model_path)
+     
+    cap = cv2.VideoCapture(0)
+    with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
+            else:
+                # Make detections
+                    image, results = mediapipe_detection(frame, holistic)
+                    
+                    # Draw landmarks
+                    draw_styled_landmarks(image, results)
+                    
+                    # 2. Prediction logic
+                    keypoints = extract_keypoints(results,'story')
+                    sequence.append(keypoints)
+                    sequence = sequence[-sequence_length:]
+
+                    if keypoints[63] == 0:
+                        sentence = " "
+                        
+                    elif len(sequence) == sequence_length :
+                        res = model.predict(np.expand_dims(sequence, axis=0))[0]
+                        predictions.append(np.argmax(res))
+                        
+                    #3. Viz logic
+                        if np.unique(predictions[-10:])[0]==np.argmax(res): 
+                            if res[np.argmax(res)] > threshold: 
+                                
+                                if len(sentence) > 0: 
+                                    if actions[np.argmax(res)]:
+                                        sentence = actions[np.argmax(res)]
+                                else:
+                                    sentence = actions[np.argmax(res)] 
+                            print(res)
+                    app.config['translatedword'] = sentence
+                        
+                    # Convert the frame to JPEG format
+                    ret, buffer = cv2.imencode('.jpg', frame)
+                    frame = buffer.tobytes()
+                    # Yield the frame in a Response object with the MIME type "multipart/x-mixed-replace; boundary=frame"
+                    yield (b'--frame\r\n'
+                        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')        
+
+
+
 
 
 
@@ -447,12 +521,25 @@ def get_video():
     # Return the video stream in a Response object
     return Response(showvideo(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+    
+@app.route('/get_answer')
+def get_answer():    
+    # Return the video stream in a Response object
+    return Response(getanswer(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/get_data')
 def get_data():
     data = app.config['translatedword']
     return str(data)
+
+@app.route('/get_image')
+def get_image():
+    data = app.config['translatedword']
+    return str(data)
+
+
 
 @app.route('/button-clicked')
 def handle_button_click():

@@ -8,6 +8,7 @@
     <link rel ="stylesheet" href = "{{url_for('static', filename='css/tasstyle.css')}}"> 
   </head>
   <body>
+    
     <div class="maincontainer">
       <div class="leftsec">
         <div class="col-md-8 mx-auto">
@@ -230,36 +231,68 @@
               </a>
             </div>
           </div>
+  
         </div>
+
+        <div class="answer-fsl" id="answer">
+          What's your answer?
+        </div>
+
       </div>
+
       <div class="rightsec">
         <div class="carousel-buttons">
+          <span id = "st-tool7"> CLICK on a story🤓 </span>
             <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel1">
                 <img src = "{{url_for('static', filename='images/story1.png')}}" class = "stories">
+                
             </button>
             <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel2">
                 <img src = "{{url_for('static', filename='images/story2.png')}}" class = "stories">
+                
             </button>
             <button type="carousel-btn" class="btn carousel-button" data-carousel-id="carousel3">
                 <img src = "{{url_for('static', filename='images/story3.png')}}" class = "stories">
+                
             </button>
         </div>
 
         <div class="scamdiv">
-          <img src="{{ url_for('get_video') }}">
+          <img src="{{ url_for('get_answer') }}">
           <span id = "st-tool6"> Make sure you're in the MIDDLE!</span>
         </div>
 
-        <div class="sback">
+        <div class="tas-tool">
+          <h2>❔HOW TO USE❔</h2>
+          <div class="tool-content">
+              <h3>DO THESE...</h3>
+              <p> Find a CLEAR background, <br>
+                  Find a WELL-LIT area,<br>
+                  When signing, put your hand in HEAD-LEVEL,<br>
+                  Put your HAND DOWN when signing a new word,<br>
+                  Remove your FACE MASK, HAT, and ARM ACCESORIES.
+              </p>
+              <h1>TRY answering the questions by SIGNING!🤯</h1>
+          </div>
+
+          <div class="sback">
             <a href="{{url_for('home')}}">BACK TO HOME</a>
         </div>
+        </div>
+
       </div>
     </div>
+    
 
     </div>
-
+    <div class="gifcontainer" id="gifcontainer"></div>
       
     <script>
+
+        const carousel = new bootstrap.Carousel(document.getElementById("carousel1"),{
+          interval:10000
+        });
+
         $(document).ready(function() {
             // Hide all carousels by default
             $(".carousel").hide();
@@ -273,7 +306,7 @@
             $(".carousel-button").click(function() {
               // Get the ID of the clicked button's carousel
               var carouselId = $(this).data("carousel-id");
-          
+
               // Hide all carousels
               $(".carousel").hide();
           
@@ -284,14 +317,176 @@
             });
           });
 
+          $('#carousel1').on('slide.bs.carousel', function(){
+            $('.carousel-control-prev', this).attr('href', '#carousel1');
+            $('.carousel-control-prev', this).attr('data-slide', 'prev');
+            $('.carousel-control-next', this).attr('href', '#carousel1');
+            $('.carousel-control-next', this).attr('data-slide', 'next');
+
+          });
+          $('#carousel2').on('slide.bs.carousel', function(){
+            $('.carousel-control-prev', this).attr('href', '#carousel2');
+            $('.carousel-control-prev', this).attr('data-slide', 'prev');
+            $('.carousel-control-next', this).attr('href', '#carousel2');
+            $('.carousel-control-next', this).attr('data-slide', 'next');
+
+          });
+          $('#carousel3').on('slide.bs.carousel', function(){
+            $('.carousel-control-prev', this).attr('href', '#carousel3');
+            $('.carousel-control-prev', this).attr('data-slide', 'prev');
+            $('.carousel-control-next', this).attr('href', '#carousel3');
+            $('.carousel-control-next', this).attr('data-slide', 'next');
+
+          });
+
+          var spanText6 = document.getElementById('st-tool6');
+          var spanText7 = document.getElementById('st-tool7');
+
           window.onmousemove = function(e){
-        var x4 = e.clientX, y4 = e.clientY;
+            var x = e.clientX, y = e.clientY;
 
-        spanText4.style.top = (y4+15) + 'px';
-        spanText4.style.left = (x4-375) + 'px';
-    }
+            spanText6.style.top = (y+15) + 'px';
+            spanText6.style.left = (x+15) + 'px';
+            spanText7.style.top = (y+15) + 'px';
+            spanText7.style.left = (x-275) + 'px';
+          }
 
+          var carousel1 = document.querySelector('#carousel1');
+          var carousel2 = document.querySelector('#carousel2');
+          var carousel3 = document.querySelector('#carousel3');
+          var answer = document.querySelector('#answer');
+          var page = ""
+
+          carousel1.addEventListener('click', function(event) {
+            console.log("story1")
+            var currentslide = document.querySelector('.active')
+            var slide = currentslide.querySelector('.carousel-item img')
+            console.log(slide.src)
+
+            var questions1 = ['TMIM1.gif','TMIM2.gif','TMIM5.gif','TMIM7.gif']
+            let temppage = ""
+            if (questions1.some(function(filename){
+              temppage = filename
+              return slide.src.includes(filename)
+            })){
+              page = temppage
+              answer.style.visibility = 'visible';
+            }else {
+              answer.style.visibility = 'hidden';
+            }
+
+          });
+
+          carousel2.addEventListener('click', function(event) {
+            console.log("story2")
+            var story2 = document.querySelector('#carousel2')
+            var currentslide = story2.querySelector('.active')
+            var slide = currentslide.querySelector('.carousel-item img')
+            console.log(slide.src)
+
+            var questions2 = ['AAK2.gif','AAK3.gif','AAK4.gif','AAK5.gif', 'AAK6.gif', 'AAK7.gif', 'AAK8.gif']
+
+            if (questions2.some(function(filename){
+              return slide.src.includes(filename)
+            })){
+              answer.style.visibility = 'visible';
+            }else {
+              answer.style.visibility = 'hidden';
+            }
+
+
+          });
+
+          carousel3.addEventListener('click', function(event) {
+            console.log("story3")
+            var story3 = document.querySelector('#carousel3')
+            var currentslide = story3.querySelector('.active')
+            var slide = currentslide.querySelector('.carousel-item img')
+
+
+            var questions3 = ['WWWT3.gif','WWWT4.gif','WWWT4QA.png','WWWT5.gif', 'WWWT6.gif']
+
+            if (questions3.some(function(filename){
+              return slide.src.includes(filename)
+            })){
+              answer.style.visibility = 'visible';
+            }else {
+              answer.style.visibility = 'hidden';
+            }
+
+
+          });
           
+          const story = document.querySelectorAll('.stories');
+
+          story.forEach((buttonS) => {
+          buttonS.addEventListener('click', () => {
+              // Remove active class from all buttons
+              story.forEach((btnS) => {
+              btnS.classList.remove('active');
+              });
+              
+              // Add active class to clicked button
+              buttonS.classList.add('active');
+          });
+          });
+
+          const gifcontainer = document.getElementById("gifcontainer")
+
+          setInterval(() => {
+            fetch('/get_data')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('answer').innerHTML = data;
+                const correctanswers = [
+                ['TMIM1.gif','BREAKFAST','carousel1'],
+                ['TMIM2.gif','EAT','carousel1'],
+                ['TMIM5.gif','SCHOOL','carousel1'],
+                ['TMIM7.gif','YOU','carousel1'],
+                ['AAK2.gif','HAND','carousel1'],
+                ['AAK3.gif','SEE','carousel1'],
+                ['AAK4.gif','MOUTH','carousel1'],
+                ['AAK5.gif','NOSE','carousel1'],
+                ['AAK6.gif','STRONG','carousel1'],
+                ['AAK7.gif','FEET','carousel1'],
+                ['AAK8.gif','BODY','carousel1'],
+                ]
+
+                let variableToCheck = page;
+                let correctword = "test"
+                for (let i = 0; i < correctanswers.length; i++) {
+                  let index = correctanswers[i].indexOf(variableToCheck);
+                  if (index !== -1) {
+                    correctword = correctanswers[i][1]
+                  }
+                }
+
+                if(data=="BREAKFAST"){
+                  document.getElementById('answer').innerHTML = "test";
+
+                  setTimeout(function(){
+                    console.log("correct")
+                  },3000)
+
+                  gifcontainer.style.display = "block"
+                  page="test"
+
+                  setTimeout(function(){
+                    gifcontainer.style.display = "none"
+                    $('#carousel').carousel('next');
+                  },5000)
+
+                  
+                }
+
+            });
+        },  500); 
+        
+
+        
+
+
+         
     </script>
 </body>
 </html>

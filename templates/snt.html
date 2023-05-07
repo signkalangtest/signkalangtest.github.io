@@ -12,6 +12,9 @@
         <div class="main-section">
             
             <div class="text-trans">
+                <div class="pic-trans" id="picpic">
+                    <img src = "{{ url_for('static', filename='images/pictrans/ARM.png') }}" id = "tpic">
+                </div>
                 
                 <div class="translatedword" id="translatedword">
                     Translated Word
@@ -239,9 +242,13 @@
         fetch('/get_data')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('translatedword').innerHTML = data;
+            image = data;
+            document.getElementById('translatedword').innerHTML = image;
+            var urlstr = "{{ url_for('static', filename='images/pictrans') }}/" + image + ".png";
+            console.log(urlstr)
+            document.getElementById('tpic').src = urlstr
         });
-    }, 500); // check every 1 second
+    }, 300); // check every 1 second
 
     var spanText4 = document.getElementById('st-tool4');
 
