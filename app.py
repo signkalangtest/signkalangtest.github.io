@@ -138,7 +138,7 @@ def generate():
 
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','ADJECTIVES','gru','lossalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.4
                     no_keypoints = 258
                     
                     
@@ -148,7 +148,7 @@ def generate():
                                         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','accalphamodel45.h5')
                     sequence_length = 20
-                    threshold = 0.5
+                    threshold = 0.3
                     no_keypoints = 63
                     
                 elif category == 'body':
@@ -158,7 +158,7 @@ def generate():
                                         'MOUTH', 'NECK', 'NOSE', 'SHOULDER'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','BODY','kent','lossalphamodel45.h5')
                     sequence_length = 30
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
                     
                 elif category == 'clothes':
@@ -168,7 +168,7 @@ def generate():
                                         'SANDO', 'SHOES', 'SKIRT', 'SLIPPER', 'SOCKS', 'TSHIRT'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','CLOTHES','kent','accalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.4
                     no_keypoints = 258
                     
                 elif category == 'colors':
@@ -176,7 +176,7 @@ def generate():
                                         'PURPLE','RED', 'VIOLET', 'WHITE', 'YELLOW'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','COLORS','kent','accalphamodel45.h5')
                     sequence_length = 20
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 126
                     
                 elif category == 'drinks':
@@ -192,7 +192,7 @@ def generate():
                                         'SCARED','SHOCK', 'SORRY', 'SURPRISE', 'WORRY'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','EMOTIONS','kent','lossalphamodel45.h5')
                     sequence_length = 30
-                    threshold = 0.6
+                    threshold = 0.4
                     no_keypoints = 258
                     
 
@@ -201,7 +201,7 @@ def generate():
                                         'GRANDPA','MOTHER', 'RELATIVE', 'SISTER', 'SON'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','FAMILY','kent','lastepoch45.h5')
                     sequence_length = 30
-                    threshold = 0.7
+                    threshold = 0.5
                     no_keypoints = 126
 
 
@@ -220,7 +220,7 @@ def generate():
                                         'PINEAPPLE', 'STRAWBERRY', 'WATERMELON'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','FRUITS','normal','accalphamodel45.h5')
                     sequence_length = 30
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
                     
                     
@@ -230,7 +230,7 @@ def generate():
                                         'TABLE', 'TAKE A BATH', 'WINDOW'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','HOUSE','gru','accalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
 
                 elif category == 'numbers':
@@ -242,7 +242,7 @@ def generate():
                                         'NINE (9)'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','NUMBERS','kent','accalphamodel45.h5')
                     sequence_length = 20
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 63
                     
 
@@ -253,7 +253,7 @@ def generate():
                                         'MARKET', 'NEIGHBORHOOD', 'PHARMACY','PULIS STATION', 'SCHOOL'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','PLACES','gru','accalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
                     
                 elif category == 'pronouns':
@@ -263,7 +263,7 @@ def generate():
                                         'US', 'WE', 'YOU', 'YOURS'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','PRONOUNS','kent','lastepochalpha.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
 
 
@@ -272,7 +272,7 @@ def generate():
                                         'PAPER', 'PENCIL', 'RULER', 'STAPLER'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','SCHOOL','kent','accalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
 
 
@@ -281,7 +281,7 @@ def generate():
                                         'RECTANGLE', 'SQUARE', 'STAR', 'TRIANGLE'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','SHAPES','gru','lossalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
 
 
@@ -290,7 +290,7 @@ def generate():
                                         'SQUASH', 'TOMATO'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','VEGGIES','normal','accalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
 
 
@@ -315,7 +315,7 @@ def generate():
                                         'STORM', 'SUN', 'THUNDER', 'TORNADO'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','WEATHER','gru','accalphamodel45.h5')
                     sequence_length = 45
-                    threshold = 0.7
+                    threshold = 0.3
                     no_keypoints = 258
 
                 # first case is normal lstm
