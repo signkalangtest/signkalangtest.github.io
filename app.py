@@ -581,8 +581,8 @@ def video_feed():
 def get_video():    
     # Return the video stream in a Response object
     return Response(showvideo(),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-    
+                    mimetype='multipart/x-mixed-replace; boundary=frame')   
+
 @app.route('/get_answer')
 def get_answer():    
     # Return the video stream in a Response object
