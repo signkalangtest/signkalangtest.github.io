@@ -6,10 +6,9 @@ body{
   font-family: "Comic Sans MS", "Comic Sans";
 }
 
-/* *{
-  border: 1px solid red;
-  
-} */
+*{
+  /* border: 1px solid red; */
+}
 
 .maincontainer{
   display: flex; /* Use Flexbox */
@@ -20,28 +19,31 @@ body{
 .leftsec{
   background-color: white;
   width: 60%;
-  height: 92vh;
+  height: 100%;
   border-radius:20px;
   align-items: center;
   align-content: center;
   display: block;
   margin-top: 2%;
-  margin-left: 2%;
+  margin-left: 4%;
 }
 
 .mainsection{
-  margin-top: 9%;
+  margin-top: 3%;
+  width:100%;
+  
 }
 
 .carousel-inner{
-  width: 100%;
+  width: 130%;
   background-color: none;
   border-radius:20px;
+  margin-left:-15%;
 }
 
 .rightsec{
   display: block;
-  margin-left: 5%;
+  margin-left: 2%;
   width: 30%;
   border-radius:20px;
   height: 92vh;
@@ -65,34 +67,108 @@ body{
   width:100%;
   height:auto;
   border-radius: 8%;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.stories.active{
+  border: 8px solid #452887;
+  border-radius: 8%;
+  transform: scale(1.1);
 }
 
 .scamdiv{
-  width: 94%;
-  margin-left: 3%;
-  border-radius:10px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius:5px;
   background-color: none;
-  height: 60%;
+  height:60%;
   margin-top: 4%;
 }
 
 .scamdiv img{
   margin-top: 10%;
   width: 100%;
-  border-radius: 20%;
+  border-radius: 5%;
+  height:60%;
+}
+
+.tas-tool{
+  margin-top: -25%;
+  text-align: center;
+}
+
+h1{
+  color: #452887;
+  font-weight: 900;
+  font-size: 1.5em;
+  font-family: "Century Gothic", sans-serif;
+  margin-top: -1%;
+}
+
+h2{
+  color: #452887;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 2em;
+  font-family: "Century Gothic", sans-serif;
+  
+
+  /* margin-left: -5%; */
+}
+.tool-content{
+  width: 23.5%;
+  background: #fff;
+  /* padding: 0 3%; */
+  position: absolute;
+  border-radius: 3%;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+  align-items: center;
+  align-self: center;
+  margin-left:3%;
+  margin-top: 0%;
+  
+}
+
+.tool-content h3{
+  font-weight: 900;
+  margin-bottom: 1%;
+  font-size: 1.5em;
+  font-family: "Century Gothic", sans-serif;
+}
+
+.tool-content p{
+  line-height: 1.4;
+  font-weight: 500;
+  font-family: "Century Gothic", sans-serif;
+}
+
+h2:hover + .tool-content{
+  visibility: visible;
+  opacity: 1;
+}
+
+h2:hover{
+  opacity: 0.7;
 }
 
 .sback{
-  width: 85%;
+  width: 72%;
   font-size: 3em;
   border-radius:10px;
   background-color:#452887;
-  margin-top:5%;
-  margin-left: 8%;
+  /* margin-bottom: 2%; */
+  /* margin-left: 8%; */
+  margin: 0 auto;
   justify-content: center;
   text-align: center;
-  height:10%;
-  padding-top:1%;
+  height:20%;
+
+  margin-top: 30%;
 }
 
 .sback a{
@@ -104,23 +180,25 @@ body{
 .carousel-control-next {
 background-color: #000;
 color: #fff;
-padding: 10px 10px;
+/* padding: 50% 50%; */
 cursor: pointer;
 position:absolute;
 top:45%;
 bottom:45%;
 width:auto;
-padding:16px;
-opacity:0.2;
+padding:2%;
+opacity:0.75;
 user-select: none;
 }
 
 .carousel-control-prev{
   border-radius: 0 50% 50% 0;
+  margin-left: -15%;
 }
 
 .carousel-control-next{
   border-radius: 50% 0 0 50%;
+  margin-right: -15%;
 }
 
 .carousel-control-prev:hover,
@@ -128,3 +206,81 @@ user-select: none;
 background-color: #D64C94;
 }
 
+#st-tool6{
+  font-family: "Century Gothic", sans-serif;
+  position: fixed;
+  display:block;
+  opacity:0;
+  visibility: hidden;
+  background: #F2BD51;
+  color: #000;
+  font-size: 1.5em;
+  box-shadow: 0 8px 10px rgba(0,0,0,.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  z-index:999;
+}
+
+.scamdiv:hover #st-tool6{
+  opacity: 1;
+  visibility: visible;
+}
+
+#st-tool7{
+  font-family: "Century Gothic", sans-serif;
+  position: fixed;
+  display:block;
+  opacity:0;
+  visibility: hidden;
+  background: #D64C94;
+  color: #000;
+  font-size: 1.5em;
+  box-shadow: 0 8px 10px rgba(0,0,0,.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  z-index:999;
+}
+
+.carousel-buttons:hover #st-tool7{
+  opacity: 1;
+  visibility: visible;
+}
+
+.answer-fsl{
+  width:95%;
+  font-size: 4vh;
+  font-weight:800;
+  text-align: center;
+  color: #0a0a0a;
+  background: #f0c671;
+  padding: 1% 1%; 
+  border-radius:10px;
+  height:100%;
+  z-index: 999;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+#answer{
+  visibility: hidden;
+}
+
+
+.gifcontainer{
+  display: none;
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-image: url("../images/correctgif.gif");
+  background-size: cover;
+}
