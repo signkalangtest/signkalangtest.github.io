@@ -461,15 +461,15 @@
                   }
                 }
 
-                if(data=="BREAKFAST"){
-                  document.getElementById('answer').innerHTML = "test";
+                if(data==correctword){
+                  document.getElementById('answer').innerHTML = data;
 
                   setTimeout(function(){
                     console.log("correct")
+                    gifcontainer.style.display = "block"
                   },3000)
 
-                  gifcontainer.style.display = "block"
-                  page="test"
+                  
 
                   setTimeout(function(){
                     gifcontainer.style.display = "none"

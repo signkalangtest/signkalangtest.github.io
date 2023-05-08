@@ -472,6 +472,8 @@ def getanswer():
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','accalphamodel45.h5')
+                    threshold = 0.2
+                    
                 elif story == "AAK":
                     actions = np.array(['BEAUTIFUL', 'BODIES', 'EAT', 'EYES', 'FEET', 'HANDS', 'HEART','MOUTH', 'NOSE', 'SEE', 'STRONG'])
 
@@ -491,6 +493,7 @@ def getanswer():
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','lossalphamodel45.h5')
+                    threshold = 0.3
                     
                 elif story == "WWWT":
                     actions = np.array(['BEAUTIFUL', 'FATHER', 'HANDSOME', 'HAPPY', 'HAT', 'MOTHER','PINK', 'SISTER'])
@@ -507,7 +510,7 @@ def getanswer():
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','WWWT','gru','accalphamodel45.h5')
-                
+                    threshold = 0.2
                 temp = story
             
             ret, frame = cap.read()
