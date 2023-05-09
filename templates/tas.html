@@ -288,11 +288,11 @@
     <div class="gifcontainer" id="gifcontainer"></div>
       
 
-    
+
     <script>
 
         const carousel = new bootstrap.Carousel(document.getElementById("carousel1"),{
-          interval:10000
+          interval:30000
         });
 
         $(document).ready(function() {
@@ -326,13 +326,15 @@
             $('.carousel-control-next', this).attr('data-slide', 'next');
 
           });
+
           $('#carousel2').on('slide.bs.carousel', function(){
             $('.carousel-control-prev', this).attr('href', '#carousel2');
             $('.carousel-control-prev', this).attr('data-slide', 'prev');
             $('.carousel-control-next', this).attr('href', '#carousel2');
             $('.carousel-control-next', this).attr('data-slide', 'next');
-
+            console.log("clicking next")
           });
+          
           $('#carousel3').on('slide.bs.carousel', function(){
             $('.carousel-control-prev', this).attr('href', '#carousel3');
             $('.carousel-control-prev', this).attr('data-slide', 'prev');
@@ -439,6 +441,8 @@
             fetch('/get_data')
             .then(response => response.text())
             .then(data => {
+                temppage = "test"
+                console.log(page)
                 document.getElementById('answer').innerHTML = data;
                 const correctanswers = [
                 ['TMIM1.gif','BREAKFAST','carousel1'],
@@ -451,7 +455,7 @@
                 ['AAK5.gif','NOSE','carousel1'],
                 ['AAK6.gif','STRONG','carousel1'],
                 ['AAK7.gif','FEET','carousel1'],
-                ['AAK8.gif','BODY','carousel1'],
+                ['AAK8.gif','BODY','carousel1']
                 ]
 
                 let variableToCheck = page;
@@ -465,20 +469,32 @@
 
                 if(data==correctword){
                   document.getElementById('answer').innerHTML = data;
+                  var currentslide = document.querySelector('.active')
+                  var slide = currentslide.querySelector('.carousel-item img')
+                  let url = slide.src
+                  page = url.split("/").pop();
 
+                  
+
+                  
                   setTimeout(function(){
                     console.log("correct")
                     gifcontainer.style.display = "block"
                   },3000)
 
-                  
 
                   setTimeout(function(){
                     gifcontainer.style.display = "none"
-                    $('#carousel').carousel('next');
-                  },5000)
+                    $('#carousel1').carousel('next');
+                    if (correctanswers.some(function(filename){
+                      return slide.src.includes(filename)
+                    })){
+                      answer.style.visibility = 'visible';
+                    }else {
+                      answer.style.visibility = 'hidden';
+                    }
+                  },8000)
 
-                  
                 }
 
             });
@@ -489,7 +505,7 @@
         sendRequest("AAK");
       });
       document.getElementById("TMIMbtn").addEventListener("click", function() {
-        sendRequest("AAK");
+        sendRequest("TMIM");
       });
       document.getElementById("WWWTbtn").addEventListener("click", function() {
         sendRequest("WWWT");
