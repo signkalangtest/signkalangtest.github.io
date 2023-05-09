@@ -116,7 +116,7 @@ def generate():
     
     model.load_weights(model_path)
      
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while True:
@@ -451,10 +451,11 @@ def getanswer():
     
     model.load_weights(model_path)
      
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while True:
             story = app.config['story']
+            print(story)
             if temp!=story:
                 if story == "TMIM":
                     actions = np.array(['BREAKFAST', 'EAT', 'SCHOOL', 'YOU'])
@@ -472,7 +473,7 @@ def getanswer():
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','accalphamodel45.h5')
-                    threshold = 0.2
+                    threshold = 0.1
                     
                 elif story == "AAK":
                     actions = np.array(['BEAUTIFUL', 'BODIES', 'EAT', 'EYES', 'FEET', 'HANDS', 'HEART','MOUTH', 'NOSE', 'SEE', 'STRONG'])
@@ -493,16 +494,16 @@ def getanswer():
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','lossalphamodel45.h5')
-                    threshold = 0.3
+                    threshold = 0.1
                     
                 elif story == "WWWT":
-                    actions = np.array(['BEAUTIFUL', 'FATHER', 'HANDSOME', 'HAPPY', 'HAT', 'MOTHER','PINK', 'SISTER'])
+                    actions = np.array(['BEAUTIFUL', 'FATHER', 'HAPPY', 'HAT', 'MOTHER', 'PINK'])
 
                     del model
                     #gru model
 
                     model = Sequential()
-                    model.add(GRU(64, return_sequences=True, activation='relu',input_shape=(30,258)))
+                    model.add(GRU(64, return_sequences=True, activation='relu',input_shape=(30,126)))
                     model.add(GRU(128, return_sequences=True, activation='relu'))
                     model.add(GRU(64, return_sequences=False, activation='relu'))
                     model.add(Dense(64, activation='relu'))
@@ -510,7 +511,7 @@ def getanswer():
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','WWWT','gru','accalphamodel45.h5')
-                    threshold = 0.2
+                    threshold = 0.3
                 temp = story
             
             ret, frame = cap.read()
