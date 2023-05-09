@@ -406,7 +406,7 @@
             var story3 = document.querySelector('#carousel3')
             var currentslide = story3.querySelector('.active')
             var slide = currentslide.querySelector('.carousel-item img')
-
+            console.log(slide.src)
 
             var questions3 = ['WWWT3.gif','WWWT4.gif','WWWT4QA.png','WWWT5.gif', 'WWWT6.gif']
 
@@ -436,36 +436,61 @@
           });
 
           const gifcontainer = document.getElementById("gifcontainer")
+          var currrentstory = "TMIM"
 
           setInterval(() => {
             fetch('/get_data')
             .then(response => response.text())
             .then(data => {
-                temppage = "test"
-                console.log(page)
+                
+                var correctword = "test"
                 document.getElementById('answer').innerHTML = data;
                 const correctanswers = [
-                ['TMIM1.gif','BREAKFAST','carousel1'],
-                ['TMIM2.gif','EAT','carousel1'],
-                ['TMIM5.gif','SCHOOL','carousel1'],
-                ['TMIM7.gif','YOU','carousel1'],
-                ['AAK2.gif','HAND','carousel1'],
-                ['AAK3.gif','SEE','carousel1'],
-                ['AAK4.gif','MOUTH','carousel1'],
-                ['AAK5.gif','NOSE','carousel1'],
-                ['AAK6.gif','STRONG','carousel1'],
-                ['AAK7.gif','FEET','carousel1'],
-                ['AAK8.gif','BODY','carousel1']
+                ['TMIM1Q.png','BREAKFAST','carousel1'],
+                ['TMIM2Q.png','EAT','carousel1'],
+                ['TMIM5Q.png','SCHOOL','carousel1'],
+                ['TMIM7Q.png','YOU','carousel1'],
+                ['AAK2Q.png','HANDS','carousel1'],
+                ['AAK3Q.png','SEE','carousel1'],
+                ['AAK4Q.png','MOUTH','carousel1'],
+                ['AAK5Q.png','NOSE','carousel1'],
+                ['AAK6Q.png','STRONG','carousel1'],
+                ['AAK7Q.png','FEET','carousel1'],
+                ['AAK8Q.png','BODIES','carousel1'],
+                ['WWWT3Q.png','FATHER','carousel1'],
+                ['WWWT4Q.png','MOTHER','carousel1'],
+                ['WWWT42Q.png','PINK','carousel1'],
+                ['WWWT5Q.png','HAT','carousel1'],
+                ['WWWT6Q.png','HAPPY','carousel1'],
                 ]
 
+                if(currrentstory == "TMIM"){
+                  var storydiv = document.getElementById("carousel1")
+                }else if(currrentstory == "AAK"){
+                  var storydiv = document.getElementById("carousel2")
+                }else if(currrentstory == "WWWT"){
+                  var storydiv = document.getElementById("carousel3")
+                }
+
+                
+                var currentslide = storydiv.querySelector('.active')
+                var slide = currentslide.querySelector('.carousel-item img')
+                let url = slide.src
+                page = url.split("/").pop();
+
                 let variableToCheck = page;
-                let correctword = "test"
+                
+
                 for (let i = 0; i < correctanswers.length; i++) {
                   let index = correctanswers[i].indexOf(variableToCheck);
+                  console.log(variableToCheck)
                   if (index !== -1) {
                     correctword = correctanswers[i][1]
                   }
                 }
+                console.log(page)
+                console.log(correctword)
+                console.log(url)
 
                 if(data==correctword){
                   document.getElementById('answer').innerHTML = data;
@@ -474,18 +499,16 @@
                   let url = slide.src
                   page = url.split("/").pop();
 
-                  
 
                   
                   setTimeout(function(){
-                    console.log("correct")
                     gifcontainer.style.display = "block"
-                  },3000)
+                  },1500)
 
 
                   setTimeout(function(){
                     gifcontainer.style.display = "none"
-                    $('#carousel1').carousel('next');
+                    $('#carousel').carousel('next');
                     if (correctanswers.some(function(filename){
                       return slide.src.includes(filename)
                     })){
@@ -502,12 +525,15 @@
         
 
       document.getElementById("AAKbtn").addEventListener("click", function() {
+        currrentstory = "AAK"
         sendRequest("AAK");
       });
       document.getElementById("TMIMbtn").addEventListener("click", function() {
+        currrentstory = "TMIM"
         sendRequest("TMIM");
       });
       document.getElementById("WWWTbtn").addEventListener("click", function() {
+        currrentstory = "WWWT"
         sendRequest("WWWT");
       });
   
