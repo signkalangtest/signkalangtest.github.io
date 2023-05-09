@@ -68,7 +68,7 @@ def extract_keypoints(results,category):
     rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
     
     key63 = ['alphabet','numbers']
-    key126 = ['colors','family','drinks','foods']
+    key126 = ['colors','family','drinks','foods','WWWT','TMIM','AAK']
     if category in key63:
         return np.concatenate([rh])
     elif category in key126:
@@ -148,7 +148,7 @@ def generate():
                                         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','ALPHABET','kent','accalphamodel45.h5')
                     sequence_length = 20
-                    threshold = 0.3
+                    threshold = 0.1
                     no_keypoints = 63
                     
                 elif category == 'body':
@@ -436,18 +436,14 @@ def getanswer():
     story = "TMIM"
     temp = 'TMIM'
     model = Sequential()
-    model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(sequence_length,no_keypoints)))
-    model.add(Dropout(0.1))
+    model.add(GRU(64, return_sequences=True, activation='relu',input_shape=(30,126)))
+    model.add(GRU(128, return_sequences=True, activation='relu'))
+    model.add(GRU(64, return_sequences=False, activation='relu'))
     model.add(Dense(64, activation='relu'))
-    model.add(GRU(64, return_sequences=True, activation='relu'))
-    model.add(Dropout(0.1))
-    model.add(Dense(64, activation='relu'))
-    model.add(GRU(32, return_sequences=False, activation='relu'))
-    model.add(BatchNormalization())
     model.add(Dense(32, activation='relu'))
     model.add(Dense(actions.shape[0], activation='softmax'))
 
-    model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','accalphamodel45.h5')
+    model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','gru','accalphamodel45.h5')
     
     model.load_weights(model_path)
      
@@ -455,51 +451,40 @@ def getanswer():
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         while True:
             story = app.config['story']
-            print(story)
+           
             if temp!=story:
                 if story == "TMIM":
                     actions = np.array(['BREAKFAST', 'EAT', 'SCHOOL', 'YOU'])
-                    del model
                     model = Sequential()
-                    model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(30,258)))
-                    model.add(Dropout(0.1))
+                    model.add(GRU(64, return_sequences=True, activation='relu',input_shape=(30,126)))
+                    model.add(GRU(128, return_sequences=True, activation='relu'))
+                    model.add(GRU(64, return_sequences=False, activation='relu'))
                     model.add(Dense(64, activation='relu'))
-                    model.add(GRU(64, return_sequences=True, activation='relu'))
-                    model.add(Dropout(0.1))
-                    model.add(Dense(64, activation='relu'))
-                    model.add(GRU(32, return_sequences=False, activation='relu'))
-                    model.add(BatchNormalization())
                     model.add(Dense(32, activation='relu'))
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','accalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','gru','accalphamodel45.h5')
+                    
                     threshold = 0.1
                     
                 elif story == "AAK":
-                    actions = np.array(['BEAUTIFUL', 'BODIES', 'EAT', 'EYES', 'FEET', 'HANDS', 'HEART','MOUTH', 'NOSE', 'SEE', 'STRONG'])
-
-                    del model
+                    actions = np.array(['BODIES', 'FEET', 'HANDS', 'MOUTH', 'NOSE', 'SEE', 'STRONG'])
                     #gru model
 
                     model = Sequential()
-                    model.add(GRU(128, return_sequences=True, activation='relu',input_shape=(30,258)))
-                    model.add(Dropout(0.1))
+                    model.add(GRU(64, return_sequences=True, activation='relu',input_shape=(30,126)))
+                    model.add(GRU(128, return_sequences=True, activation='relu'))
+                    model.add(GRU(64, return_sequences=False, activation='relu'))
                     model.add(Dense(64, activation='relu'))
-                    model.add(GRU(64, return_sequences=True, activation='relu'))
-                    model.add(Dropout(0.1))
-                    model.add(Dense(64, activation='relu'))
-                    model.add(GRU(32, return_sequences=False, activation='relu'))
-                    model.add(BatchNormalization())
                     model.add(Dense(32, activation='relu'))
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
-                    model_path = os.path.join(os.path.dirname(__file__),'static','models','TMIM','kent','lossalphamodel45.h5')
+                    model_path = os.path.join(os.path.dirname(__file__),'static','models','AAK','gru','accalphamodel45.h5')
                     threshold = 0.1
                     
                 elif story == "WWWT":
                     actions = np.array(['BEAUTIFUL', 'FATHER', 'HAPPY', 'HAT', 'MOTHER', 'PINK'])
 
-                    del model
                     #gru model
 
                     model = Sequential()
@@ -511,8 +496,10 @@ def getanswer():
                     model.add(Dense(actions.shape[0], activation='softmax'))
 
                     model_path = os.path.join(os.path.dirname(__file__),'static','models','WWWT','gru','accalphamodel45.h5')
-                    threshold = 0.3
+                    threshold = 0.1
                 temp = story
+                model.load_weights(model_path)
+
             
             ret, frame = cap.read()
             if not ret:
@@ -525,7 +512,7 @@ def getanswer():
                     draw_styled_landmarks(image, results)
                     
                     # 2. Prediction logic
-                    keypoints = extract_keypoints(results,'story')
+                    keypoints = extract_keypoints(results,story)
                     sequence.append(keypoints)
                     sequence = sequence[-sequence_length:]
 
